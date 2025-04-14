@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'ComicBasic';
-    src: url('ComicBasic.ttf') format('truetype');
+    src: url('ttf/ComicBasic.ttf') format('truetype');
 }
 
 body {
