@@ -9,7 +9,6 @@ import jakarta.persistence.*;
 @Table(name = "accounts")
 public class Account {
 
-    // FIELDS
     @Id
     @Column(name = "tax_id")
     private String taxId;
@@ -26,7 +25,7 @@ public class Account {
     @Column(name = "login")
     private String login;
 
-    @Column(name = "password")
+    @Column(name = "password_hash")
     private String password;
 
     @Column(name = "tel")
@@ -35,10 +34,25 @@ public class Account {
     @Column(name = "tel2")
     private String tel2;
 
+    @Column(name = "region")
+    private String region;
+
+    @Column(name = "post_index")
+    private String postIndex;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "address")
+    private String address;
+
     @Column(name = "register_date")
     private ZonedDateTime registerDate;
 
     @Column(name = "deletion_date")
     private ZonedDateTime deletionDate;
+
+    @Column(name = "suspended")
+    private boolean suspended;
 
 }
