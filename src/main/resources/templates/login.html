@@ -20,7 +20,7 @@
             <a href="#">Контакти</a>
         </nav>
 
-        <button id="profile-btn" th:attr="onclick=|window.location.href='@{/login.html}'|">
+        <button id="profile-btn" th:attr="onclick=|window.location.href='@{/login}'|">
             <span style="margin-right: 5px" th:if="${session.user == null}">
                 Log In
             </span>
