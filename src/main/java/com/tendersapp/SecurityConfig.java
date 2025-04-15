@@ -24,6 +24,7 @@ public class SecurityConfig {
                                 "/login.html",
                                 "/style.css",
                                 "/js/**",
+                                "/ttf/**",
                                 "/images/**"
                         ).permitAll()
                         .anyRequest().authenticated()

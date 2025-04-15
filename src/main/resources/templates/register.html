@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Реєстрація</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div id="globalbox">
+
+    <header class="block">
+        <a th:href="@{/static}" id="main-a">
+            <h1> Tenders.UA </h1>
+        </a>
+
+        <nav>
+            <a href="#">Про платформу</a>
+            <a href="#">Законодавство</a>
+            <a href="#">Контакти</a>
+        </nav>
+
+        <button id="profile-btn" th:attr="onclick=|window.location.href='@{/login.html}'|">
+            <span style="margin-right: 5px" th:if="${session.user == null}">
+                Log In
+            </span>
+            <img th:src="@{/images/Account_Icon.png}" width="25px" height="25px">
+        </button>
+    </header>
+
+    <div class="centered">
+        <div class="block" style="padding: 10px 20px;">
+            <h4>Реєстрація</h4>
+        </div>
+
+        <form class="block" style="width: 550px;" th:action="@{/register}" method="POST">
+            <h5>Інформація про організацію</h5>
+
+            <div class="field" style="margin-top: 15px;">
+                <span>* Код ЄДРПОУ / ІПН</span>
+                <div class="field-input">
+                    <input type="text" name="taxId" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <span>* Повна назва організації</span>
+                <div class="field-input">
+                    <input type="text" name="fullName" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <span>Коротка назва</span>
+                <div class="field-input">
+                    <input type="text" name="shortName">
+                </div>
+            </div>
+
+            <h5>Юридична адреса</h5>
+
+            <div class="field">
+                <span>* Область</span>
+                <div class="field-input">
+                    <input type="text" name="region" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <span>* Поштовий індекс</span>
+                <div class="field-input">
+                    <input type="number" name="post_index" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <span>* Населений пункт</span>
+                <div class="field-input">
+                    <input type="text" name="city" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <span>* Адреса</span>
+                <div class="field-input">
+                    <input type="text" name="address" required>
+                </div>
+            </div>
+
+            <h5>Контакти</h5>
+
+            <div class="field">
+                <span>* Телефон</span>
+                <div class="field-input">
+                    <input type="tel" name="tel" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <span>Резервний телефон</span>
+                <div class="field-input">
+                    <input type="tel" name="tel2">
+                </div>
+            </div>
+
+            <h5>Дані для входу в кабінет</h5>
+
+            <div class="field">
+                <span>* E-mail</span>
+                <div class="field-input">
+                    <input type="email" name="email" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <span>Логін</span>
+                <div class="field-input">
+                    <input type="text" name="login">
+                </div>
+            </div>
+
+            <div class="field">
+                <span>* Пароль</span>
+                <div class="field-input">
+                    <input type="password" name="password" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <span>* Підтвердіть пароль</span>
+                <div class="field-input">
+                    <input type="password" name="submitPassword" required>
+                </div>
+            </div>
+
+            <div th:if="${error}" class="text-danger" style="margin-top: 10px; text-align: center;">
+                <p th:text="${error}"></p>
+            </div>
+
+            <div id="login-btn">
+                <button id="login-btn" style="width: 200px" type="submit">
+                    Зареєструватись
+                </button>
+                <a th:href="@{/templates/login.html}">Вже є аккаунт? Увійти</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
