@@ -18,7 +18,7 @@ public class SecurityConfig {
                         .requestMatchers("/register", "/register.html", "/login.html", "/css/**", "/js/**", "/images/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(Customizer.withDefaults()); // якщо хочеш дозволити стандартну форму логіну
+                .formLogin(AbstractHttpConfigurer::disable);
 
         return http.build();
     }
