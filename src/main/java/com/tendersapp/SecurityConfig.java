@@ -22,7 +22,7 @@ public class SecurityConfig {
                                 "/register",
                                 "/register.html",
                                 "/login.html",
-                                "/css/**",
+                                "/style.css",
                                 "/js/**",
                                 "/images/**"
                         ).permitAll()
