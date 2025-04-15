@@ -35,6 +35,6 @@ public class LoginController {
 
         // якщо все добре — зберігаємо в сесію логін або весь об'єкт
         session.setAttribute("user", acc);
-        return "redirect:/dashboard";
+        return "redirect:/";
     }
 }
