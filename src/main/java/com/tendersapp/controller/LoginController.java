@@ -19,8 +19,13 @@ public class LoginController {
         this.AR = accountRepository;
     }
 
+    @GetMapping("/login")
+    public String showLoginPage() {
+        return "login"; // templates/login.html
+    }
+
     @PostMapping("/login")
-    public String login(
+    public String doLogin(
             @RequestParam String login,
             @RequestParam String password,
             HttpSession session,

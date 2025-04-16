@@ -18,8 +18,13 @@ public class RegisterController {
         this.AR = accountRepository;
     }
 
+    @GetMapping("/register")
+    public String showRegisterPage() {
+        return "register"; // templates/register.html
+    }
+
     @PostMapping("/register")
-    public String register(
+    public String doRegister(
             @RequestParam("taxId") String taxId,
             @RequestParam("fullName") String fullName,
             @RequestParam(value = "shortName", required = false) String shortName,
@@ -51,6 +56,6 @@ public class RegisterController {
         account.setSuspended(false);
 
         AR.save(account);
-        return "redirect:/login.html";
+        return "redirect:/login";
     }
 }
