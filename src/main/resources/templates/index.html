@@ -16,9 +16,9 @@
         </a>
 
         <nav>
-            <a href="#">Про платформу</a>
-            <a href="#">Законодавство</a>
-            <a href="#">Контакти</a>
+            <a href="#" th:text="#{nav.about}">mp.nav.about</a>
+            <a href="#" th:text="#{nav.legal}">mp.nav.about</a>
+            <a href="#" th:text="#{nav.contacts}">mp.nav.contacts</a>
         </nav>
         
         <button id="profile-btn" th:attr="onclick=|window.location.href='@{/login}'|">
@@ -35,13 +35,13 @@
     </div>
 
     <div class="block">
-        <h2 style="margin: 20px; margin-top: 10px;"><b>Пошук по сайту</b></h2>
+        <h2 style="margin: 20px; margin-top: 10px;" th:text="#{search.label}"><b>mp.search.label</b></h2>
 
         <div id="search-panel">
 
             <div class="field-input" id="search-input">
                 <img th:src="@{/images/Search_Icon.png}" width="15px" height="15px">
-                <input type="text" placeholder="Ідентифікатор тендера, замовник або ключові слова">
+                <input type="text" th:placeholder="#{search.placeholder}">
             </div>
 
             <button id="search-btn">
@@ -52,20 +52,20 @@
         <div id="filter-panel">
             <div>
                 <img th:src="@{/images/Filter_Icon.png}" width="20px" height="20px">
-                <span style="margin-left:10px"><b>Фільтрувати за: </b></span>
+                <span style="margin-left:10px" th:text="#{search.filter.label}"><b>mp.search.filter.label </b></span>
             </div>
             <div id="filter-options">
-                <a href="#">бюджет</a>
-                <a href="#">тип процедури</a>
-                <a href="#">дата відкриття</a>
-                <a href="#">статус</a>
-                <a href="#">місто</a>
+                <a href="#" th:text="#{search.filter.option1}">mp.search.filter.option1</a>
+                <a href="#" th:text="#{search.filter.option2}">mp.search.filter.option2</a>
+                <a href="#" th:text="#{search.filter.option3}">mp.search.filter.option3</a>
+                <a href="#" th:text="#{search.filter.option4}">mp.search.filter.option4</a>
+                <a href="#" th:text="#{search.filter.option5}">mp.search.filter.option5</a>
             </div>
 
         </div>
         <div id="checkbox-panel">
             <input type="checkbox" width="10px" height="10px">
-            <span>Показувати лише відкриті пропозиції</span>
+            <span th:text="#{search.filter.checkbox}">mp.search.filter.checkbox</span>
         </div>
     </div>
 
