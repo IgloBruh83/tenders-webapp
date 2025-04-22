@@ -77,21 +77,24 @@
             <div class="field">
                 <span>* Поштовий індекс</span>
                 <div class="field-input">
-                    <input type="number" name="post_index" required>
+                    <input type="text" name="post_index"
+                           required maxlength="5" pattern="^\d{5}$">
                 </div>
             </div>
 
             <div class="field">
                 <span>* Населений пункт</span>
                 <div class="field-input">
-                    <input type="text" name="city" required>
+                    <input type="text" name="city"
+                           required maxlength="64">
                 </div>
             </div>
 
             <div class="field">
                 <span>* Адреса</span>
                 <div class="field-input">
-                    <input type="text" name="address" required>
+                    <input type="text" name="address"
+                           required maxlength="255">
                 </div>
             </div>
 
@@ -100,14 +103,16 @@
             <div class="field">
                 <span>* Телефон</span>
                 <div class="field-input">
-                    <input type="tel" name="tel" required>
+                    <input type="tel" name="tel"
+                           required maxlength="18">
                 </div>
             </div>
 
             <div class="field">
                 <span>Резервний телефон</span>
                 <div class="field-input">
-                    <input type="tel" name="tel2">
+                    <input type="tel" name="tel2"
+                           maxlength="18">
                 </div>
             </div>
 
@@ -116,28 +121,32 @@
             <div class="field">
                 <span>* E-mail</span>
                 <div class="field-input">
-                    <input type="email" name="email" required>
+                    <input type="email" name="email"
+                           required maxlength="225" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$">
                 </div>
             </div>
 
             <div class="field">
                 <span>Логін</span>
                 <div class="field-input">
-                    <input type="text" name="login">
+                    <input type="text" name="login"
+                            maxlength="64">
                 </div>
             </div>
 
             <div class="field">
                 <span>* Пароль</span>
                 <div class="field-input">
-                    <input type="password" name="password" required>
+                    <input type="password" name="password"
+                           required minlength="8" maxlength="32">
                 </div>
             </div>
 
             <div class="field">
                 <span>* Підтвердіть пароль</span>
                 <div class="field-input">
-                    <input type="password" name="submitPassword" required>
+                    <input type="password" name="submitPassword"
+                           required minlength="8" maxlength="32">
                 </div>
             </div>
 
