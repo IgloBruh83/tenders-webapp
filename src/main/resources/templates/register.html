@@ -39,21 +39,24 @@
             <div class="field" style="margin-top: 15px;">
                 <span>* Код ЄДРПОУ / ІПН</span>
                 <div class="field-input">
-                    <input type="text" name="taxId" required>
+                    <input type="text" name="taxId"
+                           required pattern="^(\d{8}|\d{10})$" title="Код з 8 або 10 цифр">
                 </div>
             </div>
 
             <div class="field">
                 <span>* Повна назва організації</span>
                 <div class="field-input">
-                    <input type="text" name="fullName" required>
+                    <input type="text" name="fullName"
+                           required maxlength="255">
                 </div>
             </div>
 
             <div class="field">
                 <span>Коротка назва</span>
                 <div class="field-input">
-                    <input type="text" name="shortName">
+                    <input type="text" name="shortName"
+                           maxlength="128">
                 </div>
             </div>
 
@@ -62,7 +65,12 @@
             <div class="field">
                 <span>* Область</span>
                 <div class="field-input">
-                    <input type="text" name="region" required>
+                    <select name="region" required>
+                        <option value="">-- Оберіть область --</option>
+                        <th:block th:each="region : ${regions}">
+                            <option th:value="${region.name()}" th:text="${region.displayName}"></option>
+                        </th:block>
+                    </select>
                 </div>
             </div>
 

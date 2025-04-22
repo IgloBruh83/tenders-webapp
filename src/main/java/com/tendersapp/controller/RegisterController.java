@@ -1,6 +1,7 @@
 package com.tendersapp.controller;
 
 import com.tendersapp.model.Account;
+import com.tendersapp.model.Region;
 import com.tendersapp.repository.AccountRepository;
 import com.tendersapp.service.PasswordControl;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,8 @@ public class RegisterController {
     }
 
     @GetMapping("/register")
-    public String showRegisterPage() {
+    public String showRegisterPage(Model model) {
+        model.addAttribute("regions", Region.values());
         return "register"; // templates/register.html
     }
 
