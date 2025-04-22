@@ -37,10 +37,12 @@
             <h5>Інформація про організацію</h5>
 
             <div class="field" style="margin-top: 15px;">
-                <span>* Код ЄДРПОУ / ІПН</span>
+                <span id="label-taxId">* Код ЄДРПОУ / ІПН</span>
                 <div class="field-input">
                     <input type="text" name="taxId"
-                           required pattern="^(\d{8}|\d{10})$" title="Код з 8 або 10 цифр">
+                           required pattern="^(\d{8}|\d{10})$" title="Код з 8 або 10 цифр"
+                           oninvalid="document.getElementById('label-taxId').style.color = 'red';"
+                           oninput="document.getElementById('label-taxId').style.color = 'black';">
                 </div>
             </div>
 
@@ -75,10 +77,12 @@
             </div>
 
             <div class="field">
-                <span>* Поштовий індекс</span>
+                <span id="label-postIndex">* Поштовий індекс</span>
                 <div class="field-input">
                     <input type="text" name="post_index"
-                           required maxlength="5" pattern="^\d{5}$">
+                           required maxlength="5" pattern="^\d{5}$"
+                           oninvalid="document.getElementById('label-postIndex').style.color = 'red';"
+                           oninput="document.getElementById('label-postIndex').style.color = 'black';">
                 </div>
             </div>
 
@@ -119,10 +123,12 @@
             <h5>Дані для входу в кабінет</h5>
 
             <div class="field">
-                <span>* E-mail</span>
+                <span id="label-email">* E-mail</span>
                 <div class="field-input">
                     <input type="email" name="email"
-                           required maxlength="225" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$">
+                           required maxlength="225" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                           oninvalid="document.getElementById('label-email').style.color = 'red';"
+                           oninput="document.getElementById('label-email').style.color = 'black';">
                 </div>
             </div>
 
@@ -135,10 +141,12 @@
             </div>
 
             <div class="field">
-                <span>* Пароль</span>
+                <span id="label-password">* Пароль</span>
                 <div class="field-input">
                     <input type="password" name="password"
-                           required minlength="8" maxlength="32">
+                           required minlength="8" maxlength="32"
+                           oninvalid="document.getElementById('label-password').style.color = 'red';"
+                           oninput="document.getElementById('label-password').style.color = 'black';">
                 </div>
             </div>
 
