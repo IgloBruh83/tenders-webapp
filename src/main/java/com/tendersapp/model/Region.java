@@ -1,6 +1,8 @@
 package com.tendersapp.model;
 
 public enum Region {
+    KYIV,
+    KYIVSKA,
     VINNYTSKA,
     VOLYNSKA,
     DNIPROPETROVSKA,
@@ -9,7 +11,6 @@ public enum Region {
     ZAKARPATSKA,
     ZAPORIZKA,
     IVANO_FRANKIVSKA,
-    KYIVSKA,
     KIROVOHRADSKA,
     LUHANSKA,
     LVIVSKA,
@@ -24,8 +25,7 @@ public enum Region {
     KHMELNYTSKA,
     CHERKASKA,
     CHERNIVETSKA,
-    CHERNIHIVSKA,
-    KYIV;
+    CHERNIHIVSKA;
 
     public String getDisplayName() {
         return switch (this) {

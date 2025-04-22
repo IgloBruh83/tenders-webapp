@@ -245,3 +245,15 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.field-input select {
+    border: none;
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+.field-input select:focus {
+    outline: none;
+}
