@@ -47,10 +47,12 @@
             </div>
 
             <div class="field">
-                <span>* Повна назва організації</span>
+                <span id="label-fullName">* Повна назва організації</span>
                 <div class="field-input">
                     <input type="text" name="fullName"
-                           required maxlength="255">
+                           required maxlength="255"
+                           oninvalid="document.getElementById('label-fullName').style.color = 'red';"
+                           oninput="document.getElementById('label-fullName').style.color = 'black';">
                 </div>
             </div>
 
@@ -87,36 +89,44 @@
             </div>
 
             <div class="field">
-                <span>* Населений пункт</span>
+                <span id="label-city">* Населений пункт</span>
                 <div class="field-input">
                     <input type="text" name="city"
-                           required maxlength="64">
+                           required maxlength="64"
+                           oninvalid="document.getElementById('label-city').style.color = 'red';"
+                           oninput="document.getElementById('label-city').style.color = 'black';">
                 </div>
             </div>
 
             <div class="field">
-                <span>* Адреса</span>
+                <span id="label-address">* Адреса</span>
                 <div class="field-input">
                     <input type="text" name="address"
-                           required maxlength="255">
+                           required maxlength="255"
+                           oninvalid="document.getElementById('label-address').style.color = 'red';"
+                           oninput="document.getElementById('label-address').style.color = 'black';">
                 </div>
             </div>
 
             <h5>Контакти</h5>
 
             <div class="field">
-                <span>* Телефон</span>
+                <span id="label-tel">* Телефон</span>
                 <div class="field-input">
                     <input type="tel" name="tel"
-                           required maxlength="18">
+                           required maxlength="18"
+                           oninvalid="document.getElementById('label-tel').style.color = 'red';"
+                           oninput="document.getElementById('label-tel').style.color = 'black';">
                 </div>
             </div>
 
             <div class="field">
-                <span>Резервний телефон</span>
+                <span id="label-tel2">Резервний телефон</span>
                 <div class="field-input">
                     <input type="tel" name="tel2"
-                           maxlength="18">
+                           maxlength="18"
+                           oninvalid="document.getElementById('label-tel2').style.color = 'red';"
+                           oninput="document.getElementById('label-tel2').style.color = 'black';">
                 </div>
             </div>
 
