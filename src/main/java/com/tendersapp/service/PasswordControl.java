@@ -6,11 +6,11 @@ public class PasswordControl {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public static String hash (String plainPassword) {
+    public String hash (String plainPassword) {
         return encoder.encode(plainPassword);
     }
 
-    public static boolean match (String plainPassword, String hashedPassword) {
+    public boolean match (String plainPassword, String hashedPassword) {
         return encoder.matches(plainPassword, hashedPassword);
     }
 }

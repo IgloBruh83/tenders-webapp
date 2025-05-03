@@ -67,9 +67,12 @@
             <h5>Юридична адреса</h5>
 
             <div class="field">
-                <span>* Область</span>
+                <span id="label-region">* Область</span>
                 <div class="field-input">
-                    <select name="region" required>
+                    <select name="region"
+                            required
+                            oninvalid="document.getElementById('label-region').style.color = 'red';"
+                            oninput="document.getElementById('label-region').style.color = 'black';">>
                         <option value="">-- Оберіть область --</option>
                         <th:block th:each="region : ${regions}">
                             <option th:value="${region.name()}" th:text="${region.displayName}"></option>
@@ -161,10 +164,11 @@
             </div>
 
             <div class="field">
-                <span>* Підтвердіть пароль</span>
+                <span id="label-confPassword">* Підтвердіть пароль</span>
                 <div class="field-input">
                     <input type="password" name="submitPassword"
-                           required minlength="8" maxlength="32">
+                           required minlength="8" maxlength="32"
+                           oninput="document.getElementById('label-password').style.color = 'black';">
                 </div>
             </div>
 
@@ -182,5 +186,8 @@
     </div>
 
 </div>
+
+<script th:src="@{/js/PasswordConfirm.js}"></script>
+
 </body>
 </html>

@@ -54,7 +54,6 @@ public enum Region {
             case CHERNIVETSKA -> "Чернівецька";
             case CHERNIHIVSKA -> "Чернігівська";
             case KYIV -> "Київ";
-            default -> this.name();
         };
     }
 }
