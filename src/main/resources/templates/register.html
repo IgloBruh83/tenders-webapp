@@ -1,125 +1,181 @@
 <!DOCTYPE html>
-
 <html lang="ua" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8">
     <title>Реєстрація</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
 <div id="globalbox">
+
     <header class="block">
-        <a id="main-a" th:href="@{/}">
+        <a th:href="@{/}" id="main-a">
             <h1> Tenders.UA </h1>
         </a>
+
         <nav>
             <a href="#">Про платформу</a>
             <a href="#">Законодавство</a>
             <a href="#">Контакти</a>
         </nav>
+
         <button id="profile-btn" th:attr="onclick=|window.location.href='@{/login}'|">
-<span style="margin-right: 5px" th:if="${session.user == null}">
+            <span style="margin-right: 5px" th:if="${session.user == null}">
                 Log In
             </span>
-            <img height="25px" th:src="@{/images/Account_Icon.png}" width="25px"/>
+            <img th:src="@{/images/Account_Icon.png}" width="25px" height="25px">
         </button>
     </header>
+
     <div class="centered">
         <div class="block" style="padding: 10px 20px;">
             <h4>Реєстрація</h4>
         </div>
-        <form class="block" method="POST" style="width: 550px;" th:action="@{/register}" th:object="${registrationDto}">
+
+        <form class="block" style="width: 550px;" th:action="@{/register}" method="POST">
             <h5>Інформація про організацію</h5>
+
             <div class="field" style="margin-top: 15px;">
                 <span id="label-taxId">* Код ЄДРПОУ / ІПН</span>
                 <div class="field-input">
-                    <input oninput="document.getElementById('label-taxId').style.color = 'black';" oninvalid="document.getElementById('label-taxId').style.color = 'red';" pattern="^(\d{8}|\d{10})$" required="" th:field="*{taxId}" title="Код з 8 або 10 цифр" type="text"/><div class="text-danger" th:errors="*{taxId}" th:if="${#fields.hasErrors('taxId')}"></div>
+                    <input type="text" name="taxId"
+                           required pattern="^(\d{8}|\d{10})$" title="Код з 8 або 10 цифр"
+                           oninvalid="document.getElementById('label-taxId').style.color = 'red';"
+                           oninput="document.getElementById('label-taxId').style.color = 'black';">
                 </div>
             </div>
+
             <div class="field">
                 <span id="label-fullName">* Повна назва організації</span>
                 <div class="field-input">
-                    <input maxlength="255" oninput="document.getElementById('label-fullName').style.color = 'black';" oninvalid="document.getElementById('label-fullName').style.color = 'red';" required="" th:field="*{fullName}" type="text"/><div class="text-danger" th:errors="*{fullName}" th:if="${#fields.hasErrors('fullName')}"></div>
+                    <input type="text" name="fullName"
+                           required maxlength="255"
+                           oninvalid="document.getElementById('label-fullName').style.color = 'red';"
+                           oninput="document.getElementById('label-fullName').style.color = 'black';">
                 </div>
             </div>
+
             <div class="field">
                 <span>Коротка назва</span>
                 <div class="field-input">
-                    <input maxlength="128" th:field="*{shortName}" type="text"/><div class="text-danger" th:errors="*{shortName}" th:if="${#fields.hasErrors('shortName')}"></div>
+                    <input type="text" name="shortName"
+                           maxlength="128">
                 </div>
             </div>
+
             <h5>Юридична адреса</h5>
+
             <div class="field">
                 <span id="label-region">* Область</span>
                 <div class="field-input">
-                    <select oninput="document.getElementById('label-region').style.color = 'black';" oninvalid="document.getElementById('label-region').style.color = 'red';" required="" th:field="*{region}">&gt;
+                    <select name="region"
+                            required
+                            oninvalid="document.getElementById('label-region').style.color = 'red';"
+                            oninput="document.getElementById('label-region').style.color = 'black';">>
                         <option value="">-- Оберіть область --</option>
                         <th:block th:each="region : ${regions}">
-                            <option th:text="${region.displayName}" th:value="${region.name()}"></option>
+                            <option th:value="${region.name()}" th:text="${region.displayName}"></option>
                         </th:block>
-                    </select><div class="text-danger" th:errors="*{region}" th:if="${#fields.hasErrors('region')}"></div>
+                    </select>
                 </div>
             </div>
+
             <div class="field">
                 <span id="label-postIndex">* Поштовий індекс</span>
                 <div class="field-input">
-                    <input maxlength="5" name="post_index" oninput="document.getElementById('label-postIndex').style.color = 'black';" oninvalid="document.getElementById('label-postIndex').style.color = 'red';" pattern="^\d{5}$" required="" type="text"/>
+                    <input type="text" name="post_index"
+                           required maxlength="5" pattern="^\d{5}$"
+                           oninvalid="document.getElementById('label-postIndex').style.color = 'red';"
+                           oninput="document.getElementById('label-postIndex').style.color = 'black';">
                 </div>
             </div>
+
             <div class="field">
                 <span id="label-city">* Населений пункт</span>
                 <div class="field-input">
-                    <input maxlength="64" oninput="document.getElementById('label-city').style.color = 'black';" oninvalid="document.getElementById('label-city').style.color = 'red';" required="" th:field="*{city}" type="text"/><div class="text-danger" th:errors="*{city}" th:if="${#fields.hasErrors('city')}"></div>
+                    <input type="text" name="city"
+                           required maxlength="64"
+                           oninvalid="document.getElementById('label-city').style.color = 'red';"
+                           oninput="document.getElementById('label-city').style.color = 'black';">
                 </div>
             </div>
+
             <div class="field">
                 <span id="label-address">* Адреса</span>
                 <div class="field-input">
-                    <input maxlength="255" oninput="document.getElementById('label-address').style.color = 'black';" oninvalid="document.getElementById('label-address').style.color = 'red';" required="" th:field="*{address}" type="text"/><div class="text-danger" th:errors="*{address}" th:if="${#fields.hasErrors('address')}"></div>
+                    <input type="text" name="address"
+                           required maxlength="255"
+                           oninvalid="document.getElementById('label-address').style.color = 'red';"
+                           oninput="document.getElementById('label-address').style.color = 'black';">
                 </div>
             </div>
+
             <h5>Контакти</h5>
+
             <div class="field">
                 <span id="label-tel">* Телефон</span>
                 <div class="field-input">
-                    <input maxlength="18" oninput="document.getElementById('label-tel').style.color = 'black';" oninvalid="document.getElementById('label-tel').style.color = 'red';" required="" th:field="*{tel}" type="tel"/><div class="text-danger" th:errors="*{tel}" th:if="${#fields.hasErrors('tel')}"></div>
+                    <input type="tel" name="tel"
+                           required maxlength="18"
+                           oninvalid="document.getElementById('label-tel').style.color = 'red';"
+                           oninput="document.getElementById('label-tel').style.color = 'black';">
                 </div>
             </div>
+
             <div class="field">
                 <span id="label-tel2">Резервний телефон</span>
                 <div class="field-input">
-                    <input maxlength="18" oninput="document.getElementById('label-tel2').style.color = 'black';" oninvalid="document.getElementById('label-tel2').style.color = 'red';" th:field="*{tel2}" type="tel"/><div class="text-danger" th:errors="*{tel2}" th:if="${#fields.hasErrors('tel2')}"></div>
+                    <input type="tel" name="tel2"
+                           maxlength="18"
+                           oninvalid="document.getElementById('label-tel2').style.color = 'red';"
+                           oninput="document.getElementById('label-tel2').style.color = 'black';">
                 </div>
             </div>
+
             <h5>Дані для входу в кабінет</h5>
+
             <div class="field">
                 <span id="label-email">* E-mail</span>
                 <div class="field-input">
-                    <input maxlength="225" oninput="document.getElementById('label-email').style.color = 'black';" oninvalid="document.getElementById('label-email').style.color = 'red';" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" required="" th:field="*{email}" type="email"/><div class="text-danger" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></div>
+                    <input type="email" name="email"
+                           required maxlength="225" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                           oninvalid="document.getElementById('label-email').style.color = 'red';"
+                           oninput="document.getElementById('label-email').style.color = 'black';">
                 </div>
             </div>
+
             <div class="field">
                 <span>Логін</span>
                 <div class="field-input">
-                    <input maxlength="64" th:field="*{login}" type="text"/><div class="text-danger" th:errors="*{login}" th:if="${#fields.hasErrors('login')}"></div>
+                    <input type="text" name="login"
+                            maxlength="64">
                 </div>
             </div>
+
             <div class="field">
                 <span id="label-password">* Пароль</span>
                 <div class="field-input">
-                    <input maxlength="32" minlength="8" oninput="document.getElementById('label-password').style.color = 'black';" oninvalid="document.getElementById('label-password').style.color = 'red';" required="" th:field="*{password}" type="password"/><div class="text-danger" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></div>
+                    <input type="password" name="password"
+                           required minlength="8" maxlength="32"
+                           oninvalid="document.getElementById('label-password').style.color = 'red';"
+                           oninput="document.getElementById('label-password').style.color = 'black';">
                 </div>
             </div>
+
             <div class="field">
                 <span id="label-confPassword">* Підтвердіть пароль</span>
                 <div class="field-input">
-                    <input maxlength="32" minlength="8" name="submitPassword" oninput="document.getElementById('label-password').style.color = 'black';" required="" type="password"/>
+                    <input type="password" name="submitPassword"
+                           required minlength="8" maxlength="32"
+                           oninput="document.getElementById('label-password').style.color = 'black';">
                 </div>
             </div>
-            <div class="text-danger" style="margin-top: 10px; text-align: center;" th:if="${error}">
+
+            <div th:if="${error}" class="text-danger" style="margin-top: 10px; text-align: center;">
                 <p th:text="${error}"></p>
             </div>
+
             <div id="login-btn">
                 <button id="login-btn" style="width: 200px" type="submit">
                     Зареєструватись
@@ -128,7 +184,10 @@
             </div>
         </form>
     </div>
+
 </div>
+
 <script th:src="@{/js/PasswordConfirm.js}"></script>
+
 </body>
 </html>

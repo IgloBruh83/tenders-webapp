@@ -32,6 +32,11 @@ public class RegisterController {
             Model model
     ) {
         if (result.hasErrors()) {
+            result.getFieldErrors().forEach(error -> {
+                System.out.println("Field: " + error.getField());
+                System.out.println("Message: " + error.getDefaultMessage());
+            });
+
             model.addAttribute("regions", Region.values());
             return "register";
         }
