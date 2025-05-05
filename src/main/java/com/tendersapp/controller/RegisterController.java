@@ -27,7 +27,7 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String doRegister(
-            @ModelAttribute("registrationDto") @Valid RegisterDTO registrationDto,
+            @ModelAttribute("registrationDto") @Valid RegisterDTO dto,
             BindingResult result,
             Model model
     ) {
@@ -41,7 +41,7 @@ public class RegisterController {
             return "register";
         }
 
-        userService.registerUser(registrationDto);
+        userService.registerUser(dto);
         return "redirect:/login";
     }
 }

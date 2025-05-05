@@ -21,7 +21,7 @@
             <a href="#" th:text="#{nav.contacts}">mp.nav.contacts</a>
         </nav>
         
-        <button id="profile-btn" th:attr="onclick=|window.location.href='@{/login}'|">
+        <button id="profile-btn" th:attr="onclick=|window.location.href='@{/account}'|">
             <span style="margin-right: 5px" th:if="${session.user == null}">
                 Log In
             </span>
