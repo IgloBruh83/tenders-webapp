@@ -1,5 +1,7 @@
 package com.tendersapp.dto;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -39,6 +41,7 @@ public class RegisterDTO {
     @Size(max = 18, message = "Другий телефон має бути не більше 18 символів")
     private String tel2;
 
+    @Enumerated(EnumType.STRING)
     @NotNull(message = "Регіон не може бути порожнім")
     private String region;
 

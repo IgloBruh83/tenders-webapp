@@ -1,6 +1,7 @@
 package com.tendersapp.dto;
 
 public class LoginDTO {
+
     private String login;
     private String password;
 

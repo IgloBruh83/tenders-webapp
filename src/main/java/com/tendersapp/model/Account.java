@@ -34,6 +34,7 @@ public class Account {
     @Column(name = "tel2")
     private String tel2;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "region")
     private String region;
 
