@@ -1,7 +1,9 @@
 package com.tendersapp.service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PasswordControl {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

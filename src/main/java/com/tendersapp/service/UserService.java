@@ -1,11 +1,13 @@
 package com.tendersapp.service;
 
+import com.tendersapp.dto.LoginDTO;
 import com.tendersapp.dto.RegisterDTO;
 import com.tendersapp.model.Account;
 import com.tendersapp.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -16,6 +18,16 @@ public class UserService {
     public UserService(AccountRepository accountRepository, PasswordControl passwordControl) {
         this.accountRepository = accountRepository;
         this.passwordControl = passwordControl;
+    }
+
+    public Account loginUser(LoginDTO dto) {
+        Optional<Account> acc = accountRepository.findByLogin(dto.getLogin());
+
+        if (acc.isEmpty() || !passwordControl.match(dto.getPassword(), acc.get().getPassword())) {
+            return null;
+        }
+
+        return acc.get();
     }
 
     public void registerUser(RegisterDTO dto) {
