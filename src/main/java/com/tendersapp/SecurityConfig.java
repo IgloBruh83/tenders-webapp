@@ -30,6 +30,8 @@ public class SecurityConfig implements WebMvcConfigurer {
                                 "/register.html",
                                 "/login",
                                 "/login.html",
+                                "/account",
+                                "/account.html",
                                 "/style.css",
                                 "/js/**",
                                 "/ttf/**",
