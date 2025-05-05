@@ -36,7 +36,7 @@ public class Account {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "region")
-    private String region;
+    private Region region;
 
     @Column(name = "post_index")
     private String postIndex;

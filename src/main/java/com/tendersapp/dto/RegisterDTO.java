@@ -1,5 +1,6 @@
 package com.tendersapp.dto;
 
+import com.tendersapp.model.Region;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
@@ -43,7 +44,7 @@ public class RegisterDTO {
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Регіон не може бути порожнім")
-    private String region;
+    private Region region;
 
     @NotNull
     @Pattern(regexp = "\\d{5}", message = "Поштовий індекс має містити рівно 5 цифр")
