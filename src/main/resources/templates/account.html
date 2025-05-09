@@ -36,12 +36,13 @@
             </div>
             <div style="width: 850px;">
                 <h3 style="margin-bottom: 0px;" th:text="${user.shortName}">SomeCompanyName</h3>
-                <span id="account-type-span">Компанія-постачальник</span>
+                <span id="account-type-span" th:if="${user.taxId.length() == 8}">Компанія-постачальник</span>
+                <span id="account-type-span" th:if="${user.taxId.length() == 10}">Приватний виконавець</span>
                 <div id="acc-info-box">
                     <div class="acc-info">
                         <img th:src="@{/images/telephone.png}" width="18px" height="18px">
                         <span th:text="${user.tel}">+38000000000</span>
-                        <span th:text="${user.tel2}" th:if="${user.tel2 != null}">+38000000000</span>
+                        <span th:text="${user.tel2}" th:if="|, ${user.tel2 != null}|">+38000000000</span>
                     </div>
                     <div class="acc-info">
                         <img th:src="@{/images/mail.png}" width="18px" height="18px">
