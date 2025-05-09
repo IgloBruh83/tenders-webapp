@@ -19,4 +19,10 @@ public class AccountPageController {
         return "account";
     }
 
+    @GetMapping("/logout")
+    public String doLogout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
+
 }

@@ -22,82 +22,54 @@
             <a href="#">Контакти</a>
         </nav>
 
-        <button id="profile-btn" th:attr="onclick=|window.location.href='@{/login}'|">
+        <button id="profile-btn" th:attr="onclick=|window.location.href='@{/account}'|">
             <span style="margin-right: 5px" th:if="${session.user == null}">
                 Log In
             </span>
             <img th:src="@{/images/Account_Icon.png}" width="25px" height="25px">
         </button>
     </header>
-
-    <div class="centered">
-        <div class="block" style="width: 700px">
-            <h4 style="text-align:center;">Мій акаунт</h4>
-            <div class="field">
-                <span>Назва:</span>
-                <div class="field-input">
-                    <span th:text="${user.fullName}">Повна назва</span>
+        <div class="block" id="account-box" style="padding-top: 20px;">
+            <div>
+                <img th:src="@{/images/CompanyIcon.png}" width="125px" height="125px" th:if="${user.taxId.length() == 8}">
+                <img th:src="@{/images/PersonIcon.png}" width="125px" height="125px" th:if="${user.taxId.length() == 10}">
+            </div>
+            <div style="width: 850px;">
+                <h3 style="margin-bottom: 0px;" th:text="${user.shortName}">SomeCompanyName</h3>
+                <span id="account-type-span">Компанія-постачальник</span>
+                <div id="acc-info-box">
+                    <div class="acc-info">
+                        <img th:src="@{/images/telephone.png}" width="18px" height="18px">
+                        <span th:text="${user.tel}">+38000000000</span>
+                        <span th:text="${user.tel2}" th:if="${user.tel2 != null}">+38000000000</span>
+                    </div>
+                    <div class="acc-info">
+                        <img th:src="@{/images/mail.png}" width="18px" height="18px">
+                        <span th:text="${user.email}">ExampleEmail@Gmail.com</span>
+                    </div>
+                    <div class="acc-info">
+                        <img th:src="@{/images/home.png}" width="18px" height="18px">
+                        <span th:text="|${user.fullName} - ${user.taxId}|">SomeCompanyName - TaxID</span>
+                    </div>
+                    <div class="acc-info">
+                        <img th:src="@{/images/location.png}" width="18px" height="18px">
+                        <span th:text="|${user.address} - ${user.city}, ${user.region}|">SomeExampleAddress</span>
+                    </div>
+                    <div class="acc-info">
+                        <img th:src="@{/images/dry-clean.png}" width="18px" height="18px">
+                        <span th:text="|Зареєстрований з ${user.registerDate}|">Зареєстрований з ExampleDate</span>
+                    </div>
                 </div>
             </div>
-
-            <div class="field">
-                <span>Код ЄДРПОУ / ІПН:</span>
-                <div class="field-input">
-                    <span th:text="${user.taxId}">12345678</span>
-                </div>
-            </div>
-
-            <div class="field">
-                <span>Email:</span>
-                <div class="field-input">
-                    <span th:text="${user.email}">email@example.com</span>
-                </div>
-            </div>
-
-            <div class="field">
-                <span>Телефон:</span>
-                <div class="field-input">
-                    <span th:text="${user.tel}">+380...</span>
-                </div>
-            </div>
-
-            <div class="field">
-                <span>Область:</span>
-                <div class="field-input">
-                    <span th:text="${user.region}">LVIVSKA</span>
-                </div>
-            </div>
-
-            <div class="field">
-                <span>Місто:</span>
-                <div class="field-input">
-                    <span th:text="${user.city}">Львів</span>
-                </div>
-            </div>
-
-            <div class="field">
-                <span>Адреса:</span>
-                <div class="field-input">
-                    <span th:text="${user.address}">вул. Прикладна 1</span>
-                </div>
-            </div>
-
-            <div class="field">
-                <span>Статус акаунту:</span>
-                <div class="field-input">
-                    <span th:text="${user.suspended} ? 'Заблокований' : 'Активний'">Активний</span>
-                </div>
-            </div>
-
-            <div class="field">
-                <span>Зареєстровано:</span>
-                <div class="field-input">
-                    <span th:text="${#temporals.format(user.registerDate, 'yyyy-MM-dd HH:mm')}">...</span>
-                </div>
-            </div>
+            <div>
+                <button id="profile-btn" style="background-color: rgb(216, 54, 54); margin-top: 190px;" th:attr="onclick=|window.location.href='@{/logout}'|">
+                    <span>
+                        Log Out
+                    </span>
+                </button>
+            </div>    
+            
         </div>
-    </div>
-
 </div>
 </body>
 </html>

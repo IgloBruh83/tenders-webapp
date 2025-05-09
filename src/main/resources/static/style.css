@@ -82,10 +82,7 @@ button {
     cursor: pointer;
 }
 button:hover {
-    background: linear-gradient(
-        to bottom,
-        #0465cd 0%, #0465cd 30%, #ffd700 70%, #ffd700 100%
-    );
+    background: #44b5e2;
 }
 #profile-btn {
     padding-left: 15px;
@@ -93,15 +90,6 @@ button:hover {
     min-width: 60px;
     width: auto;
     height: 40px;
-}
-#profile-btn:hover {
-    background: linear-gradient(
-        to bottom,
-        #0465cd 0%,    /* синій починається */
-        #0465cd 30%,   /* синій тягнеться до 45% */
-        #ffd700 70%,   /* жовтий починається з 55% */
-        #ffd700 100%   /* і до самого кінця */
-      );
 }
 
 
@@ -256,4 +244,25 @@ input::-webkit-inner-spin-button {
 
 .field-input select:focus {
     outline: none;
+}
+
+
+#account-box {
+    display: flex;
+    width: 100%;
+    gap: 40px
+}
+#account-type-span {
+    font-size: 18px;
+    color: #585858;
+}
+
+#acc-info-box{
+    margin-top: 40px;
+}
+.acc-info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
 }
