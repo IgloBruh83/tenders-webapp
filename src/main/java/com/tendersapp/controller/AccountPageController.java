@@ -22,7 +22,7 @@ public class AccountPageController {
     @GetMapping("/logout")
     public String doLogout(HttpSession session) {
         session.invalidate();
-        return "redirect:/";
+        return "/";
     }
 
 }
