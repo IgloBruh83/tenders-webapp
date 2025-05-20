@@ -13,7 +13,7 @@ public class Tender {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
 
     @Column(name = "title", nullable = false)
     private String title;
