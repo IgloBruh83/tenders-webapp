@@ -74,4 +74,10 @@ public class AuthController {
         userService.registerUser(dto);
         return "redirect:/login";
     }
+
+    @GetMapping("/logout")
+    public String doLogout(HttpSession session) {
+        session.invalidate();
+        return "index";
+    }
 }

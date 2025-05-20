@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 
 @Controller
-public class AccountPageController {
+public class PageController {
 
     @GetMapping("/account")
     public String showAccountPage(HttpSession session, Model model) {
@@ -19,10 +19,9 @@ public class AccountPageController {
         return "account";
     }
 
-    @GetMapping("/logout")
-    public String doLogout(HttpSession session) {
-        session.invalidate();
-        return "index";
+    @GetMapping("/")
+    public String index() {
+        return "index"; // = templates/index.html (через Thymeleaf)
     }
 
 }
