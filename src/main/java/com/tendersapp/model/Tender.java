@@ -28,7 +28,7 @@ public class Tender {
     private String status;
 
     @Column(name = "budget")
-    private Long budget;
+    private float budget;
 
     @Column(name = "deadline")
     private ZonedDateTime deadline;
