@@ -21,7 +21,17 @@ public class PageController {
 
     @GetMapping("/")
     public String index() {
-        return "index"; // = templates/index.html (через Thymeleaf)
+        return "index"; // = templates/index.html
+    }
+
+    @GetMapping("/about")
+    public String aboutMe() {
+        return "about"; // = templates/about.html
+    }
+
+    @GetMapping("/legal")
+    public String legal() {
+        return "legal"; // = templates/legal.html
     }
 
 }

@@ -2,7 +2,6 @@ package com.tendersapp.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
 @Entity
@@ -32,10 +31,7 @@ public class Tender {
 
     @Column(name = "deadline")
     private ZonedDateTime deadline;
-
-    @Column(name = "currencyCode")
-    private int currencyCode;
-
+    
     @Column(name = "region")
     private String region;
 
