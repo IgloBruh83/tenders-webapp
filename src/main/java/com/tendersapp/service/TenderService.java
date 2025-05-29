@@ -36,6 +36,7 @@ public class TenderService {
 
     @Transactional
     public void createTender(TenderDTO dto) {
+        System.out.println(dto.getCreatorId());
         Account creator = accountRepository.findById(dto.getCreatorId())
                 .orElseThrow(() -> new EntityNotFoundException("Account не знайдено: " + dto.getCreatorId()));
 
