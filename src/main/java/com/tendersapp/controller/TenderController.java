@@ -3,6 +3,7 @@ package com.tendersapp.controller;
 import com.tendersapp.dto.ProposalDTO;
 import com.tendersapp.dto.TenderDTO;
 import com.tendersapp.model.Account;
+import com.tendersapp.model.Region;
 import com.tendersapp.model.Status;
 import com.tendersapp.repository.AccountRepository;
 import com.tendersapp.repository.TenderRepository;
@@ -48,6 +49,7 @@ public class TenderController {
     // Відкриття сторінки створення тендера
     @GetMapping("/new")
     public String showCreateTenderForm(Model model, HttpSession session) {
+        model.addAttribute("regions", Region.values());
         Account account = (Account) session.getAttribute("user");
         if (account == null) {
             return "redirect:/login";
