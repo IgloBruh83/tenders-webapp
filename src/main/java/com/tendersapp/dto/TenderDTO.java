@@ -25,7 +25,6 @@ public class TenderDTO {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "Статус тендера обов'язковий")
     private Status status;
 
     @DecimalMin(value = "0.0", inclusive = false, message = "Бюджет повинен бути більше 0")
