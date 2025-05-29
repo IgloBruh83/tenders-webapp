@@ -60,17 +60,17 @@
 
                 <div class="acc-info">
                     <span style="color: #585858;">Бюджет:</span>
-                    <span th:text="${tender.status.getDisplayName()} + 'UAH'"><b>tender.budget UAH</b></span>
+                    <span th:text="${tender.budget} + 'UAH'"><b>tender.budget UAH</b></span>
                 </div>
 
                 <div class="acc-info">
                     <span style="color: #585858;">Телефон:</span>
-                    <span><b>tender.creatorTel</b></span>
+                    <span th:text="${tender.creatorTel}"><b>tender.creatorTel</b></span>
                 </div>
 
                 <div class="acc-info" th:if="${tender.creatorTel2 != null}">
                     <span style="color: #585858;">Телефон:</span>
-                    <span><b>tender.creatorTel2</b></span>
+                    <span th:text="${tender.creatorTel2}"><b>tender.creatorTel2</b></span>
                 </div>
 
                 <div class="acc-info">
