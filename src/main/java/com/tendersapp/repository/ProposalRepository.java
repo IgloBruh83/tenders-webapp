@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface ProposalRepository extends JpaRepository<Proposal, Integer> {
-    Optional<Proposal> findById(String title);
+    Optional<Proposal> findById(Integer id);
 }
