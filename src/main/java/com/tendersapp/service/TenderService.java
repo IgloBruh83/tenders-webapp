@@ -55,7 +55,9 @@ public class TenderService {
             tender.setWinner(winner);
         }
 
+        System.out.println("TenderService::createTender — створюємо тендер: " + dto.getTitle());
         tenderRepository.save(tender);
+        System.out.println("TenderService::createTender — збережено");
     }
 
     @Transactional
