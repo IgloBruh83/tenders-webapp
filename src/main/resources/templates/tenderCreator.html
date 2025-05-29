@@ -39,7 +39,7 @@
             <div class="field-t" style="margin-top: 15px;">
                 <span id="label-tName">* Назва пропозиції</span>
                 <div class="field-input">
-                    <textarea name="tName" style="width: 480px;"
+                    <textarea name="title" style="width: 480px;"
                            required maxlength="255"
                            oninvalid="document.getElementById('label-tName').style.color = 'red';"
                            oninput="document.getElementById('label-tName').style.color = 'black';"></textarea>
@@ -49,7 +49,7 @@
             <div class="field-t">
                 <span id="label-tDescription">* Розгорнутий опис</span>
                 <div class="field-input">
-                    <textarea name="tDescription" style="width: 480px; height: 300px;"
+                    <textarea name="description" style="width: 480px; height: 300px;"
                            required maxlength="5000"
                            oninvalid="document.getElementById('label-tDescription').style.color = 'red';"
                            oninput="document.getElementById('label-tDescription').style.color = 'black';"></textarea>
@@ -61,7 +61,7 @@
             <div class="field-t">
                 <span id="label-tRegion">* Область</span>
                 <div class="field-input">
-                    <select name="tRegion" style="width: 480px;"
+                    <select name="region" style="width: 480px;"
                             required
                             oninvalid="document.getElementById('label-tRegion').style.color = 'red';"
                             oninput="document.getElementById('label-tRegion').style.color = 'black';">>
@@ -120,7 +120,7 @@
                 <div class="field-input">
                     <input style="width: 480px;"
                             type="datetime-local"
-                            name="localDateTime"
+                            name="deadline"
                             id="localDateTime"
                             oninvalid="document.getElementById('label-deadline').style.color='red';"
                             oninput="document.getElementById('label-deadline').style.color='black';"
