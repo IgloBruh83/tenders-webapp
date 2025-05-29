@@ -69,12 +69,16 @@ public class TenderController {
             Model model,
             HttpSession session
     ) {
-        System.out.println("TenderController::createTender");
         Account account = (Account) session.getAttribute("user");
         if (account == null) {
             return "redirect:/login";
         }
         if (result.hasErrors()) {
+            System.out.println("VALIDATION FAILED:");
+            result.getFieldErrors().forEach(error ->
+                    System.out.println("Field: " + error.getField() + ", Error: " + error.getDefaultMessage())
+            );
+
             model.addAttribute("accounts", accountRepository.findAll());
             return "tenderCreator";
         }
@@ -86,16 +90,7 @@ public class TenderController {
             tenderDTO.setCreatorTel2(currentUser.getTel2());
         }
 
-        // TEMP
-        try {
-            tenderService.createTender(tenderDTO);
-            System.out.println("TenderController::createTender - Success");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("TenderController::createTender - ERROR");
-        }
-        // TEMP
-
+        tenderService.createTender(tenderDTO);
         return "redirect:/";
     }
 
