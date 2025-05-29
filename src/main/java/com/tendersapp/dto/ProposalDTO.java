@@ -1,5 +1,6 @@
 package com.tendersapp.dto;
 
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -9,8 +10,12 @@ public class ProposalDTO {
     @NotNull(message = "ID не може бути порожнім")
     private Integer id;
 
+    @ManyToOne
     @NotNull(message = "ID користувача обов'язковий")
-    private Integer creatorId;
+    private String creatorId;
+
+    @NotNull(message = "ID тендера обов'язковий")
+    private Integer tenderId;
 
     @Min(value = 1, message = "Тривалість плану повинна бути більше 0")
     private int planLength;

@@ -17,6 +17,10 @@ public class Proposal {
     @JoinColumn(name = "creator", nullable = false)
     private Account creator;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "tender_id", nullable = false)
+    private Tender tender;
+
     @Column(name = "plan_length")
     private int planLength;
 

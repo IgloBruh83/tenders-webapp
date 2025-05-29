@@ -34,4 +34,9 @@ public class PageController {
         return "legal"; // = templates/legal.html
     }
 
+    @GetMapping("/legal")
+    public String contacts() {
+        return "contacts"; // = templates/contacts.html
+    }
+
 }
