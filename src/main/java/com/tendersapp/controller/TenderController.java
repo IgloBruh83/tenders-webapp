@@ -69,6 +69,7 @@ public class TenderController {
             Model model,
             HttpSession session
     ) {
+        System.out.println("TenderController::createTender");
         Account account = (Account) session.getAttribute("user");
         if (account == null) {
             return "redirect:/login";
@@ -86,6 +87,7 @@ public class TenderController {
         }
 
         tenderService.createTender(tenderDTO);
+        System.out.println("TenderController::createTender - Success");
         return "redirect:/";
     }
 
