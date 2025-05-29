@@ -20,11 +20,9 @@ public class Tender {
     @Column(name = "description", length = 2000)
     private String description;
 
-    @Column(name = "type")
-    private String type;
-
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private Status status;
 
     @Column(name = "budget")
     private float budget;

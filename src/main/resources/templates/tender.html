@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Мій профіль</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
 
@@ -31,62 +31,55 @@
     </header>
         <div class="block" id="T-box" style="padding-top: 20px;">
             <div id="Tdesc-box">
-                <h3 style="margin-bottom: 10px;">Закупівля чорного чаю для загальноосвітньої школи №12</h3>
+                <h3 style="margin-bottom: 10px;" th:text="${tender.title}">tender.title</h3>
                     <div class="acc-info">
-                        <img src="../static/images/location.png" width="18px" height="18px">
-                        <span>вул. Заріфи Алієвої, 12 - м. Ірпінь, Київська обл.</span>
+                        <img th:src="@{/images/location.png}" width="18px" height="18px">
+                        <span th:text="${tender.city + ', ' + tender.address + ', ' + tender.region}">tender.city + address + region</span>
                     </div>
                     <div class="acc-info">
-                        <img src="../static/images/business-and-trade.png" width="18px" height="18px">
-                        <span>Ірпінська СЗОШ №12</span>
+                        <img th:src="@{/images/business-and-trade.png}" width="18px" height="18px">
+                        <span th:text="${tender.creatorName}">tender.creatorName</span>
                     </div>
                     <div class="acc-info">
-                        <img src="../static/images/business-and-trade.png" width="18px" height="18px">
-                        <span>ЄДРПОУ: 36286117</span>
+                        <img th:src="@{/images/business-and-trade.png}" width="18px" height="18px">
+                        <span th:text="'ЄДРПОУ: ' + ${tender.creatorId}">ЄДРПОУ: tender.creatorID</span>
                     </div>
                 <br>
                 <span style="font-size: 18px;"><b>Про тендер:</b></span>
-                <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Suscipit alias voluptas dignissimos ipsa at tempore animi
-                    deleniti voluptates laudantium praesentium quaerat
-                    eos reprehenderit nisi libero repudiandae, laboriosam facere.
-                    Accusantium, possimus! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Suscipit alias voluptas dignissimos ipsa at tempore animi
-                    deleniti voluptates laudantium praesentium quaerat
-                    eos reprehenderit nisi libero repudiandae, laboriosam facere.
-                    Accusantium, possimus!<br><br>
-                    Eos reprehenderit nisi libero repudiandae, laboriosam facere.
-                    Accusantium, possimus! Accusantium, possimus! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Suscipit alias voluptas dignissimos ipsa at tempore animi
-                    deleniti voluptates laudantium praesentium quaerat
+                <p th:text="${tender.description}">
+                    tender.description
                 </p>
             </div>
             <div id="Tinfo-box">
-                <h5 style="margin-bottom: 10px;">Деталі тендеру</h3>
+                <h5 style="margin-bottom: 10px;">Деталі тендеру</h5>
 
                 <div class="acc-info">
                     <span style="color: #585858;">Статус:</span>
-                    <span><b>Відкрита пропозиція</b></span>
+                    <span th:text="${tender.status.getDisplayName()}"><b>tender.status</b></span>
                 </div>
 
                 <div class="acc-info">
                     <span style="color: #585858;">Бюджет:</span>
-                    <span><b>200 800 UAH</b></span>
+                    <span th:text="${tender.status.getDisplayName()} + 'UAH'"><b>tender.budget UAH</b></span>
                 </div>
 
                 <div class="acc-info">
                     <span style="color: #585858;">Телефон:</span>
-                    <span><b>+380982103114</b></span>
+                    <span><b>tender.creatorTel</b></span>
+                </div>
+
+                <div class="acc-info" th:if="${tender.creatorTel2 != null}">
+                    <span style="color: #585858;">Телефон:</span>
+                    <span><b>tender.creatorTel2</b></span>
                 </div>
 
                 <div class="acc-info">
                     <span style="color: #585858;">Дедлайн:</span>
-                    <span><b>2025.06.25</b></span>
+                    <span th:text="${tender.deadline}"><b>tender.deadline</b></span>
                 </div>
 
                 <button id="profile-btn" style="margin: 15px;">
-                    <span style="margin-right: 5px" th:if="${session.user == null}">
+                    <span style="margin-right: 5px">
                         Подати пропозицію
                     </span>
                 </button>

@@ -1,5 +1,9 @@
 package com.tendersapp.dto;
 
+import com.tendersapp.model.Status;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,11 +25,9 @@ public class TenderDTO {
     @Size(max = 2000, message = "Опис не повинен перевищувати 2000 символів")
     private String description;
 
-    @NotBlank(message = "Тип тендера обов'язковий")
-    private String type;
-
+    @Enumerated(EnumType.STRING)
     @NotBlank(message = "Статус тендера обов'язковий")
-    private String status;
+    private Status status;
 
     @DecimalMin(value = "0.0", inclusive = false, message = "Бюджет повинен бути більше 0")
     private float budget;
@@ -42,9 +44,18 @@ public class TenderDTO {
     @NotBlank(message = "Адреса обов'язкова")
     private String address;
 
+    @ManyToOne
     @NotNull(message = "ID творця обов'язковий")
-    private Integer creatorId;
+    private String creatorId;
 
-    private Integer winnerId;
+    @NotNull(message = "Ім'я творця обов'язкове")
+    private String creatorName;
+
+    @NotNull(message = "Повинен бути хоча б один номер телефону!")
+    private String creatorTel;
+
+    private String creatorTel2;
+
+    private String winnerId;
 
 }

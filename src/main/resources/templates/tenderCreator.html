@@ -33,7 +33,7 @@
             <h4>+ Створення тендера</h4>
         </div>
 
-        <form class="block" style="width: 800px;" th:action="@{/register}" method="POST">
+        <form class="block" style="width: 800px;" th:action="@{/tenders}" method="POST">
             <h5>Загальна інформація</h5>
 
             <div class="field-t" style="margin-top: 15px;">
@@ -41,8 +41,8 @@
                 <div class="field-input">
                     <textarea name="tName" style="width: 480px;"
                            required maxlength="255"
-                           oninvalid="document.getElementById('label-tenderName').style.color = 'red';"
-                           oninput="document.getElementById('label-tenderName').style.color = 'black';"></textarea>
+                           oninvalid="document.getElementById('label-tName').style.color = 'red';"
+                           oninput="document.getElementById('label-tName').style.color = 'black';"></textarea>
                 </div>
             </div>
 
@@ -58,13 +58,13 @@
 
             <h5>Адреса</h5>
 
-            <div class="field">
-                <span id="label-region">* Область</span>
+            <div class="field-t">
+                <span id="label-tRegion">* Область</span>
                 <div class="field-input">
-                    <select name="region"
+                    <select name="tRegion" style="width: 480px;"
                             required
-                            oninvalid="document.getElementById('label-region').style.color = 'red';"
-                            oninput="document.getElementById('label-region').style.color = 'black';">>
+                            oninvalid="document.getElementById('label-tRegion').style.color = 'red';"
+                            oninput="document.getElementById('label-tRegion').style.color = 'black';">>
                         <option value="">-- Оберіть область --</option>
                         <th:block th:each="region : ${regions}">
                             <option th:value="${region.name()}" th:text="${region.displayName}"></option>
@@ -73,30 +73,30 @@
                 </div>
             </div>
 
-            <div class="field">
-                <span id="label-postIndex">* Поштовий індекс</span>
+            <div class="field-t">
+                <span id="label-tPostIndex">* Поштовий індекс</span>
                 <div class="field-input">
-                    <input type="text" name="postIndex"
+                    <input type="text" name="postIndex" style="width: 480px;"
                            required maxlength="5" pattern="^\d{5}$"
-                           oninvalid="document.getElementById('label-postIndex').style.color = 'red';"
-                           oninput="document.getElementById('label-postIndex').style.color = 'black';">
+                           oninvalid="document.getElementById('label-tPostIndex').style.color = 'red';"
+                           oninput="document.getElementById('label-tPostIndex').style.color = 'black';">
                 </div>
             </div>
 
-            <div class="field">
+            <div class="field-t">
                 <span id="label-city">* Населений пункт</span>
                 <div class="field-input">
-                    <input type="text" name="city"
+                    <input type="text" name="city" style="width: 480px;"
                            required maxlength="64"
                            oninvalid="document.getElementById('label-city').style.color = 'red';"
                            oninput="document.getElementById('label-city').style.color = 'black';">
                 </div>
             </div>
 
-            <div class="field">
+            <div class="field-t">
                 <span id="label-address">* Адреса</span>
                 <div class="field-input">
-                    <input type="text" name="address"
+                    <input type="text" name="address" style="width: 480px;"
                            required maxlength="255"
                            oninvalid="document.getElementById('label-address').style.color = 'red';"
                            oninput="document.getElementById('label-address').style.color = 'black';">
@@ -105,20 +105,20 @@
 
             <h5>Умови</h5>
 
-            <div class="field">
+            <div class="field-t">
                 <span id="label-budget">* Бюджет</span>
                 <div class="field-input">
-                    <input type="number" name="budget"
+                    <input type="number" name="budget" style="width: 480px;"
                            required
                            oninvalid="document.getElementById('label-budget').style.color = 'red';"
                            oninput="document.getElementById('label-budget').style.color = 'black';">
                 </div>
             </div>
 
-            <div class="field">
+            <div class="field-t">
                 <span id="label-deadline">Дедлайн</span>
                 <div class="field-input">
-                    <input
+                    <input style="width: 480px;"
                             type="datetime-local"
                             name="localDateTime"
                             id="localDateTime"
@@ -129,54 +129,15 @@
                 </div>
             </div>
 
-            <h5>Дані для входу в кабінет</h5>
-
-            <div class="field">
-                <span id="label-email">* E-mail</span>
-                <div class="field-input">
-                    <input type="email" name="email"
-                           required maxlength="225" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
-                           oninvalid="document.getElementById('label-email').style.color = 'red';"
-                           oninput="document.getElementById('label-email').style.color = 'black';">
-                </div>
-            </div>
-
-            <div class="field">
-                <span>Логін</span>
-                <div class="field-input">
-                    <input type="text" name="login"
-                            maxlength="64">
-                </div>
-            </div>
-
-            <div class="field">
-                <span id="label-password">* Пароль</span>
-                <div class="field-input">
-                    <input type="password" name="password"
-                           required minlength="8" maxlength="32"
-                           oninvalid="document.getElementById('label-password').style.color = 'red';"
-                           oninput="document.getElementById('label-password').style.color = 'black';">
-                </div>
-            </div>
-
-            <div class="field">
-                <span id="label-confPassword">* Підтвердіть пароль</span>
-                <div class="field-input">
-                    <input type="password" name="submitPassword"
-                           required minlength="8" maxlength="32"
-                           oninput="document.getElementById('label-password').style.color = 'black';">
-                </div>
-            </div>
-
+            
             <div th:if="${error}" class="text-danger" style="margin-top: 10px; text-align: center;">
                 <p th:text="${error}"></p>
             </div>
 
             <div id="login-btn">
                 <button id="login-btn" style="width: 200px" type="submit">
-                    Зареєструватись
+                    Створити тендер
                 </button>
-                <a th:href="@{/templates/login.html}">Вже є аккаунт? Увійти</a>
             </div>
         </form>
     </div>
