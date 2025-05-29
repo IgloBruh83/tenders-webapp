@@ -15,7 +15,6 @@ import java.time.ZonedDateTime;
 @Data
 public class TenderDTO {
 
-    @NotNull(message = "ID тендера обов'язковий")
     private Integer id;
 
     @NotBlank(message = "Назва тендера обов'язкова")
@@ -32,7 +31,6 @@ public class TenderDTO {
     @DecimalMin(value = "0.0", inclusive = false, message = "Бюджет повинен бути більше 0")
     private float budget;
 
-    @NotNull(message = "Дедлайн обов'язковий")
     private ZonedDateTime deadline;
 
     @NotBlank(message = "Регіон обов'язковий")
@@ -45,13 +43,10 @@ public class TenderDTO {
     private String address;
 
     @ManyToOne
-    @NotNull(message = "ID творця обов'язковий")
     private String creatorId;
 
-    @NotNull(message = "Ім'я творця обов'язкове")
     private String creatorName;
 
-    @NotNull(message = "Повинен бути хоча б один номер телефону!")
     private String creatorTel;
 
     private String creatorTel2;

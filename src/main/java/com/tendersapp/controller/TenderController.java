@@ -19,6 +19,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 @Controller
 @RequestMapping("/tenders")
 public class TenderController {
@@ -66,6 +70,8 @@ public class TenderController {
     public String createTender(
             @Valid @ModelAttribute("tenderDTO") TenderDTO tenderDTO,
             BindingResult result,
+            @RequestParam("localDateTime") String localDateTimeStr,
+            @RequestParam("zoneId") String zoneIdStr,
             Model model,
             HttpSession session
     ) {
@@ -89,6 +95,9 @@ public class TenderController {
         if (currentUser.getTel2() != null) {
             tenderDTO.setCreatorTel2(currentUser.getTel2());
         }
+        LocalDateTime ldt = LocalDateTime.parse(localDateTimeStr);
+        ZonedDateTime deadline = ldt.atZone(ZoneId.of(zoneIdStr));
+        tenderDTO.setDeadline(deadline);
 
         tenderService.createTender(tenderDTO);
         return "redirect:/";
