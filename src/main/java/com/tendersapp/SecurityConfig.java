@@ -21,24 +21,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/",
-                                "/index",
-                                "/index.html",
-                                "/register",
-                                "/register.html",
-                                "/login",
-                                "/login.html",
-                                "/account",
-                                "/account.html",
-                                "/style.css",
-                                "/js/**",
-                                "/ttf/**",
-                                "/images/**"
-                        ).permitAll()
-                        .anyRequest().authenticated()
-                )
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
                 .formLogin(AbstractHttpConfigurer::disable);
 
         return http.build();

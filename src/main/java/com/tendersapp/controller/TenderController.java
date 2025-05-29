@@ -47,7 +47,12 @@ public class TenderController {
 
     // Відкриття сторінки створення тендера
     @GetMapping("/new")
-    public String showCreateTenderForm(Model model) {
+    public String showCreateTenderForm(Model model, HttpSession session) {
+        Account account = (Account) session.getAttribute("user");
+        if (account == null) {
+            return "redirect:/login";
+        }
+
         model.addAttribute("tenderDTO", new TenderDTO());
         model.addAttribute("accounts", accountRepository.findAll());
         return "tenderCreator";
@@ -62,6 +67,10 @@ public class TenderController {
             Model model,
             HttpSession session
     ) {
+        Account account = (Account) session.getAttribute("user");
+        if (account == null) {
+            return "redirect:/login";
+        }
         if (result.hasErrors()) {
             model.addAttribute("accounts", accountRepository.findAll());
             return "tenderCreator";
@@ -83,8 +92,13 @@ public class TenderController {
     @Transactional
     public String updateStatus(
             @PathVariable("id") int tenderId,
-            @RequestParam("status") Status status
+            @RequestParam("status") Status status,
+            HttpSession session
     ) {
+        Account account = (Account) session.getAttribute("user");
+        if (account == null) {
+            return "redirect:/login";
+        }
         tenderService.updateStatus(tenderId, status);
         return "redirect:/tenders/" + tenderId;
     }
@@ -93,8 +107,13 @@ public class TenderController {
     @GetMapping("/{tenderId}/proposals/new")
     public String showCreateProposalForm(
             @PathVariable("tenderId") int tenderId,
-            Model model
+            Model model, HttpSession session
     ) {
+        Account account = (Account) session.getAttribute("user");
+        if (account == null) {
+            return "redirect:/login";
+        }
+
         ProposalDTO proposalDTO = new ProposalDTO();
         proposalDTO.setTenderId(tenderId);
         model.addAttribute("proposalDTO", proposalDTO);
@@ -109,8 +128,14 @@ public class TenderController {
             @PathVariable("tenderId") int tenderId,
             @Valid @ModelAttribute("proposalDTO") ProposalDTO proposalDTO,
             BindingResult result,
-            Model model
+            Model model, HttpSession session
     ) {
+
+        Account account = (Account) session.getAttribute("user");
+        if (account == null) {
+            return "redirect:/login";
+        }
+
         if (result.hasErrors()) {
             model.addAttribute("accounts", accountRepository.findAll());
             return "proposalCreator";
@@ -122,7 +147,12 @@ public class TenderController {
     // Видалення пропозиції
     @DeleteMapping("/proposals/{proposalId}")
     @Transactional
-    public String deleteProposal(@PathVariable("proposalId") int proposalId) {
+    public String deleteProposal(@PathVariable("proposalId") int proposalId, HttpSession session) {
+        Account account = (Account) session.getAttribute("user");
+        if (account == null) {
+            return "redirect:/login";
+        }
+
         proposalService.deleteProposal(proposalId);
         return "redirect:/tenders";
     }
