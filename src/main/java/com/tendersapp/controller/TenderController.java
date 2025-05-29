@@ -86,8 +86,16 @@ public class TenderController {
             tenderDTO.setCreatorTel2(currentUser.getTel2());
         }
 
-        tenderService.createTender(tenderDTO);
-        System.out.println("TenderController::createTender - Success");
+        // TEMP
+        try {
+            tenderService.createTender(tenderDTO);
+            System.out.println("TenderController::createTender - Success");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("TenderController::createTender - ERROR");
+        }
+        // TEMP
+
         return "redirect:/";
     }
 
