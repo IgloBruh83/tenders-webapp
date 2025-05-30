@@ -44,7 +44,7 @@
                 <input type="text" th:placeholder="#{search.placeholder}">
             </div>
 
-            <button id="search-btn">
+            <button id="search-btn" th:attr="onclick=|window.location.href='@{/search}'|">
                 <img th:src="@{/images/Search_Icon.png}" width="20px" height="20px">
             </button>
 
