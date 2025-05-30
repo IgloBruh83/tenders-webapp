@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @Controller
 @RequestMapping("/tenders")
@@ -48,6 +49,14 @@ public class TenderController {
         TenderDTO tenderDTO = tenderService.getTenderById(id); // або .findById
         model.addAttribute("tender", tenderDTO);
         return "tender"; // назва шаблону .html, який відображатиме тендер
+    }
+
+    @GetMapping("/search")
+    public String searchTenders(@RequestParam("q") String query, Model model) {
+        List<TenderDTO> results = tenderService.search(query);
+        model.addAttribute("tenders", results);
+        model.addAttribute("query", query);
+        return "index";
     }
 
     // Відкриття сторінки створення тендера

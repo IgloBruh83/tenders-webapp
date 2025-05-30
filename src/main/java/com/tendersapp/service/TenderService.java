@@ -82,6 +82,14 @@ public class TenderService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<TenderDTO> search(String query) {
+        return tenderRepository.search(query).stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
+    }
+
+
     // Конвертація сутності в DTO
     private TenderDTO toDTO(Tender tender) {
         TenderDTO dto = new TenderDTO();

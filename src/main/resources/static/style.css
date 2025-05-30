@@ -324,3 +324,15 @@ textarea {
   resize: none;  
   background: transparent;
 }
+
+
+.block-t {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 15px 30px;
+    margin-bottom: 25px;
+    overflow: hidden;
+
+    display: flex;
+    
+}
