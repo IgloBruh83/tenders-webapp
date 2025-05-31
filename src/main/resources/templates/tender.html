@@ -75,7 +75,7 @@
 
                 <div class="acc-info">
                     <span style="color: #585858;">Дедлайн:</span>
-                    <span th:text="${tender.deadline}"><b>tender.deadline</b></span>
+                    <span th:text="${#temporals.format(tender.deadline, 'dd.MM.yyyy HH:mm')}"><b>tender.deadline</b></span>
                 </div>
 
                 <button id="profile-btn" style="margin: 15px;">

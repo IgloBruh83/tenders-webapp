@@ -58,7 +58,7 @@
                     </div>
                     <div class="acc-info">
                         <img th:src="@{/images/dry-clean.png}" width="18px" height="18px">
-                        <span th:text="|Зареєстрований з ${user.registerDate}|">Зареєстрований з ExampleDate</span>
+                        <span th:text="|Зареєстрований з ${#temporals.format(user.registerDate, 'dd.MM.yyyy HH:mm')}|">Зареєстрований з ExampleDate</span>
                     </div>
                 </div>
             </div>

@@ -92,9 +92,9 @@
         <div style="background-color: black; width: 3px; margin: 0px 15px;"></div>
         <div style="width: 300px">
             <h6 th:text="'Статус: '+${t.status}">Статус: Відкрита пропозиція</h6>
-            <h6 th:text="'Дедлайн: '+${t.deadline}">Дедлайн: 23.07.2028</h6>
+            <h6 th:text="'Дедлайн: '+${#temporals.format(t.deadline, 'dd.MM.yyyy HH:mm')}">Дедлайн: 23.07.2028</h6>
             <h6>Бюджет:</h6>
-            <h6 style="font-size: 25px; color: green" th:text="${t.status} + 'UAH'">8500000 UAH</h6>
+            <h6 style="font-size: 25px; color: green" th:text="${t.budget} + ' UAH'">8500000 UAH</h6>
             <button id="search-btn" style="margin-top: 30px; margin-left: 75px;" th:onclick="|window.location.href='/tenders/${t.id}'|">
                 <span style="margin-right: 5px">
                 <b>Переглянути</b>
