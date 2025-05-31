@@ -38,15 +38,16 @@
         <h2 style="margin: 20px; margin-top: 10px;" th:text="#{search.label}"><b>mp.search.label</b></h2>
 
         <div id="search-panel">
-
+            <form method="GET" action="/tenders/search">
             <div class="field-input" id="search-input">
                 <img th:src="@{/images/Search_Icon.png}" width="15px" height="15px">
-                <input type="text" th:placeholder="#{search.placeholder}">
+                <input type="text" name="q" th:placeholder="#{search.placeholder}">
             </div>
 
-            <button id="search-btn" th:attr="onclick=|window.location.href='@{/tenders/search}'|">
+            <button id="search-btn" type="submit">
                 <img th:src="@{/images/Search_Icon.png}" width="20px" height="20px">
             </button>
+            </form>
 
         </div>
         <div id="filter-panel">
