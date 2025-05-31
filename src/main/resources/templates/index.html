@@ -37,8 +37,7 @@
     <div class="block">
         <h2 style="margin: 20px; margin-top: 10px;" th:text="#{search.label}"><b>mp.search.label</b></h2>
 
-        <div id="search-panel">
-            <form method="GET" action="/tenders/search">
+            <form id="search-panel" method="GET" action="/tenders/search">
             <div class="field-input" id="search-input">
                 <img th:src="@{/images/Search_Icon.png}" width="15px" height="15px">
                 <input type="text" name="q" th:placeholder="#{search.placeholder}">
@@ -49,7 +48,6 @@
             </button>
             </form>
 
-        </div>
         <div id="filter-panel">
             <div>
                 <img th:src="@{/images/Filter_Icon.png}" width="20px" height="20px">
