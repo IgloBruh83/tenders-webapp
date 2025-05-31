@@ -68,7 +68,7 @@
                     <span th:text="${tender.creatorTel}"><b>tender.creatorTel</b></span>
                 </div>
 
-                <div class="acc-info" th:if="${tender.creatorTel2 != null}">
+                <div class="acc-info" th:if="${!tender.creatorTel2.isBlank()}">
                     <span style="color: #585858;">Телефон:</span>
                     <span th:text="${tender.creatorTel2}"><b>tender.creatorTel2</b></span>
                 </div>

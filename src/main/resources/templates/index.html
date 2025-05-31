@@ -86,7 +86,7 @@
             </div>
             <div class="acc-info">
                 <img th:src="@{/images/business-and-trade.png}" width="18px" height="18px">
-                <span th:text="${t.creatorId}">ЄДРПОУ: tender.creatorID</span>
+                <span th:text="'ІПН/ЄДРПОУ: ' + ${t.creatorId}">ЄДРПОУ: tender.creatorID</span>
             </div>
         </div>
         <div style="background-color: black; width: 3px; margin: 0px 15px;"></div>

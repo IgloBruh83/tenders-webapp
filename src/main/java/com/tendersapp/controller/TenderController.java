@@ -101,7 +101,7 @@ public class TenderController {
         tenderDTO.setCreatorId(currentUser.getTaxId());
         tenderDTO.setCreatorName(currentUser.getShortName());
         tenderDTO.setCreatorTel(currentUser.getTel());
-        if (currentUser.getTel2() != null) {
+        if (!currentUser.getTel2().isBlank()) {
             tenderDTO.setCreatorTel2(currentUser.getTel2());
         }
         LocalDateTime ldt = LocalDateTime.parse(localDateTimeStr);
