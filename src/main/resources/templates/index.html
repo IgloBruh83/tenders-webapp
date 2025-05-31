@@ -40,7 +40,7 @@
             <form id="search-panel" method="GET" action="/tenders/search">
             <div class="field-input" id="search-input">
                 <img th:src="@{/images/Search_Icon.png}" width="15px" height="15px">
-                <input type="text" name="q" th:placeholder="#{search.placeholder}">
+                <input type="text" name="q" th:value="${param.q}" th:placeholder="#{search.placeholder}">
             </div>
 
             <button id="search-btn" type="submit">
