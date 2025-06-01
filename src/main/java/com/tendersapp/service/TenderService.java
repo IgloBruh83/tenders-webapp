@@ -105,7 +105,7 @@ public class TenderService {
         dto.setCreatorId(tender.getCreator().getTaxId());
         dto.setCreatorName(tender.getCreator().getShortName());
         dto.setCreatorTel(tender.getCreator().getTel());
-        if (!tender.getCreator().getTel2().isBlank()) {
+        if (tender.getCreator().getTel2() != null) {
             dto.setCreatorTel2(tender.getCreator().getTel2());
         }
         if (tender.getWinner() != null) {
