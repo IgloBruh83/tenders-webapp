@@ -78,7 +78,8 @@
                     <span th:text="${#temporals.format(tender.deadline, 'dd.MM.yyyy HH:mm')}"><b>tender.deadline</b></span>
                 </div>
 
-                <button id="profile-btn" style="margin: 15px;">
+                <button id="profile-btn" style="margin: 15px;"
+                        th:attr="|onclick=location.href='@{/tenders/{id}/proposal/new(id=${tender.id})}'|">
                     <span style="margin-right: 5px">
                         Подати пропозицію
                     </span>
