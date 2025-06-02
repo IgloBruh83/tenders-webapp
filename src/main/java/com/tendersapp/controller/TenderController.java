@@ -122,19 +122,29 @@ public class TenderController {
         return "redirect:/";
     }
 
-    // Зміна статусу тендера
-    @PostMapping("/{id}/status")
+    @GetMapping("/{id}/status")
     @Transactional
-    public String updateStatus(
+    public String toggleStatus(
             @PathVariable("id") int tenderId,
-            @RequestParam("status") Status status,
             HttpSession session
     ) {
         Account account = (Account) session.getAttribute("user");
         if (account == null) {
             return "redirect:/login";
         }
-        tenderService.updateStatus(tenderId, status);
+
+        TenderDTO tenderDTO = tenderService.getTenderById(tenderId);
+        Status current = tenderDTO.getStatus();
+        if (current != Status.ENDED) {
+            Status next;
+            if (current == Status.OPEN) {
+                next = Status.CLOSED;
+            } else {
+                next = Status.OPEN;
+            }
+            tenderService.updateStatus(tenderId, next);
+        }
+
         return "redirect:/tenders/" + tenderId;
     }
 
