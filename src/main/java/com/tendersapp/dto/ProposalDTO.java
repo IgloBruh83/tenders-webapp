@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class ProposalDTO {
 
-    @NotNull(message = "ID не може бути порожнім")
     private Integer id;
 
     @ManyToOne

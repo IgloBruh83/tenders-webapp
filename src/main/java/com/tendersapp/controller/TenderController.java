@@ -170,6 +170,8 @@ public class TenderController {
             model.addAttribute("accounts", accountRepository.findAll());
             return "proposalCreator";
         }
+        proposalDTO.setTenderId(tenderId);
+        proposalDTO.setCreatorId(account.getTaxId());
         proposalService.submitProposal(proposalDTO);
         return "redirect:/tenders/" + tenderId;
     }
