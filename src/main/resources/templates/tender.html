@@ -100,7 +100,7 @@
         Тендерні пропозиції:
         </h4>
 
-        <div class="block-t" th:each="p : ${proposals}">
+        <div class="block-t" th:each="p : ${proposals}" th:if="${isOwner}">
         <div style="width: 800px;">
             <b style="color: grey" th:text="'PROP-ID-'+${p.id}">UA-1</b>
             <div class="acc-info" style="margin-top: 15px;">
