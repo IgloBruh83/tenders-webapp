@@ -32,8 +32,10 @@ public class ProposalService {
     }
 
     @Transactional(readOnly = true)
-    public List<ProposalDTO> findAll() {
-        return proposalRepository.findAll().stream()
+    public List<ProposalDTO> findAllByTenderId(Integer tenderId) {
+        return proposalRepository
+                .findAllByTenderId(tenderId)
+                .stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     }
@@ -55,17 +57,12 @@ public class ProposalService {
         proposalRepository.save(proposal);
     }
 
-    @Transactional
-    public void deleteProposal(int proposalId) {
-        Proposal proposal = proposalRepository.findById(proposalId)
-                .orElseThrow(() -> new EntityNotFoundException("Proposal не знайдено: " + proposalId));
-        proposalRepository.delete(proposal);
-    }
-
     private ProposalDTO toDTO(Proposal proposal) {
         ProposalDTO dto = new ProposalDTO();
         dto.setId(proposal.getId());
         dto.setCreatorId(proposal.getCreator().getTaxId());
+        dto.setCreatorName(proposal.getCreator().getShortName());
+        dto.setCreatorTel(proposal.getCreator().getTel());
         dto.setTenderId(proposal.getTender().getId());
         dto.setPlanLength(proposal.getPlanLength());
         dto.setBudget(proposal.getBudget());

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Мій профіль</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
 
@@ -87,6 +87,46 @@
 
             </div>
         </div>
+
+        <h4 style="margin-left: 50px; margin-bottom: 15px; margin-top: 50px;" th:if="${isOwner}">
+        Тендерні пропозиції:
+        </h4>
+
+        <div class="block-t" th:each="p : ${proposals}">
+        <div style="width: 800px;">
+            <b style="color: grey" th:text="'PROP-ID-'+${p.id}">UA-1</b>
+            <div class="acc-info">
+                <img th:src="@{/images/business-and-trade.png}" width="18px" height="18px">
+                <span th:text="${p.creatorName}">proposal.creatorName</span>
+            </div>
+            <div class="acc-info">
+                <img th:src="@{/images/business-and-trade.png}" width="18px" height="18px">
+                <span th:text="'ІПН/ЄДРПОУ: ' + ${p.creatorId}">ЄДРПОУ: proposal.creatorID</span>
+            </div>
+            <div class="acc-info">
+                <img th:src="@{/images/dry-clean.png}" width="18px" height="18px">
+                <span th:text="${p.budget}">proposal.budget</span>
+            </div>
+            <div class="acc-info">
+                <img th:src="@{/images/telephone.png}" width="18px" height="18px">
+                <span th:text="${p.creatorTel}">proposal.creatorTel</span>
+            </div>
+
+            <br>
+            <span style="font-size: 18px;"><b>Текст пропозиції:</b></span>
+                <p th:text="${p.description}">
+                    proposal.description
+                </p>
+        </div>
+        <div style="background-color: black; width: 3px; margin: 0px 15px;"></div>
+        <div style="width: 300px">
+            <button id="search-btn" style="margin-top: 10px; margin-left: 55px; width: 200px;" th:onclick="|window.location.href='/tenders/${t.id}'|">
+                <span style="margin-right: 5px">
+                <b>Обрати переможцем</b>
+                </span>
+            </button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

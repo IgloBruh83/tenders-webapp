@@ -9,8 +9,9 @@ public class ProposalDTO {
 
     private Integer id;
 
-    @ManyToOne
     private String creatorId;
+    private String creatorName;
+    private String creatorTel;
 
     @NotNull(message = "ID тендера обов'язковий")
     private Integer tenderId;

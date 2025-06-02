@@ -3,9 +3,11 @@ package com.tendersapp.controller;
 import com.tendersapp.dto.ProposalDTO;
 import com.tendersapp.dto.TenderDTO;
 import com.tendersapp.model.Account;
+import com.tendersapp.model.Proposal;
 import com.tendersapp.model.Region;
 import com.tendersapp.model.Status;
 import com.tendersapp.repository.AccountRepository;
+import com.tendersapp.repository.ProposalRepository;
 import com.tendersapp.repository.TenderRepository;
 import com.tendersapp.service.ProposalService;
 import com.tendersapp.service.TenderService;
@@ -31,24 +33,30 @@ public class TenderController {
     private final TenderService tenderService;
     private final ProposalService proposalService;
     private final AccountRepository accountRepository;
-    private final TenderRepository tenderRepository;
 
     @Autowired
     public TenderController(TenderService tenderService,
                             ProposalService proposalService,
-                            AccountRepository accountRepository,
-                            TenderRepository tenderRepository) {
+                            AccountRepository accountRepository) {
         this.tenderService = tenderService;
         this.proposalService = proposalService;
         this.accountRepository = accountRepository;
-        this.tenderRepository = tenderRepository;
     }
 
     @GetMapping("/{id}")
-    public String showTenderDetails(@PathVariable("id") int id, Model model) {
-        TenderDTO tenderDTO = tenderService.getTenderById(id); // або .findById
+    public String showTenderDetails(@PathVariable("id") int id, Model model, HttpSession session) {
+        Account account = (Account) session.getAttribute("user");
+        TenderDTO tenderDTO = tenderService.getTenderById(id);
+
+        if (account != null) {
+            model.addAttribute("isOwner", account.getTaxId().equals( tenderDTO.getCreatorId() ));
+        }
         model.addAttribute("tender", tenderDTO);
-        return "tender"; // назва шаблону .html, який відображатиме тендер
+
+        List<ProposalDTO> proposals = proposalService.findAllByTenderId(id);
+        model.addAttribute("proposals", proposals);
+
+        return "tender";
     }
 
     @GetMapping("/search")
@@ -174,18 +182,5 @@ public class TenderController {
         proposalDTO.setCreatorId(account.getTaxId());
         proposalService.submitProposal(proposalDTO);
         return "redirect:/tenders/" + tenderId;
-    }
-
-    // Видалення пропозиції
-    @DeleteMapping("/proposals/{proposalId}")
-    @Transactional
-    public String deleteProposal(@PathVariable("proposalId") int proposalId, HttpSession session) {
-        Account account = (Account) session.getAttribute("user");
-        if (account == null) {
-            return "redirect:/login";
-        }
-
-        proposalService.deleteProposal(proposalId);
-        return "redirect:/tenders";
     }
 }
