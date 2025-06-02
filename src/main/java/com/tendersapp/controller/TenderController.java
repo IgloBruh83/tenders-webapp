@@ -162,6 +162,11 @@ public class TenderController {
         }
 
         if (result.hasErrors()) {
+            System.out.println("VALIDATION FAILED:");
+            result.getFieldErrors().forEach(error ->
+                    System.out.println("Field: " + error.getField() + ", Error: " + error.getDefaultMessage())
+            );
+
             model.addAttribute("accounts", accountRepository.findAll());
             return "proposalCreator";
         }
