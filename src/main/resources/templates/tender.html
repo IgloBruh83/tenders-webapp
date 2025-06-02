@@ -79,9 +79,17 @@
                 </div>
 
                 <button id="profile-btn" style="margin: 15px;"
-                        th:attr="onclick=|location.href='@{/tenders/{id}/proposals/new(id=${tender.id})}'|">
+                        th:attr="onclick=|location.href='@{/tenders/{id}/proposals/new(id=${tender.id})}'|"
+                        th:if="${!isOwner && tender.status == T(com.tendersapp.model.Status).OPEN}">
                     <span style="margin-right: 5px">
                         Подати пропозицію
+                    </span>
+                </button>
+                <button id="profile-btn" style="margin: 15px;"
+                        th:attr="onclick=|location.href='@{/tenders/{id}/status(id=${tender.id})}'|"
+                        th:if="${isOwner}">
+                    <span style="margin-right: 5px">
+                        Перемкнути статус
                     </span>
                 </button>
 
@@ -95,7 +103,7 @@
         <div class="block-t" th:each="p : ${proposals}">
         <div style="width: 800px;">
             <b style="color: grey" th:text="'PROP-ID-'+${p.id}">UA-1</b>
-            <div class="acc-info">
+            <div class="acc-info" style="margin-top: 15px;">
                 <img th:src="@{/images/business-and-trade.png}" width="18px" height="18px">
                 <span th:text="${p.creatorName}">proposal.creatorName</span>
             </div>
@@ -105,7 +113,7 @@
             </div>
             <div class="acc-info">
                 <img th:src="@{/images/dry-clean.png}" width="18px" height="18px">
-                <span th:text="'Бюджет: ' + ${p.budget}">proposal.budget</span>
+                <span th:text="'Бюджет: ' + ${p.budget} + ' UAH'">proposal.budget</span>
             </div>
             <div class="acc-info">
                 <img th:src="@{/images/telephone.png}" width="18px" height="18px">
