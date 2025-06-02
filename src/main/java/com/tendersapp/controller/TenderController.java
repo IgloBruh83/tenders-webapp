@@ -50,6 +50,8 @@ public class TenderController {
 
         if (account != null) {
             model.addAttribute("isOwner", account.getTaxId().equals( tenderDTO.getCreatorId() ));
+        } else {
+            model.addAttribute("isOwner", false);
         }
         model.addAttribute("tender", tenderDTO);
 
