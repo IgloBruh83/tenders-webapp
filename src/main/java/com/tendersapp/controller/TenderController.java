@@ -3,15 +3,11 @@ package com.tendersapp.controller;
 import com.tendersapp.dto.ProposalDTO;
 import com.tendersapp.dto.TenderDTO;
 import com.tendersapp.model.Account;
-import com.tendersapp.model.Proposal;
 import com.tendersapp.model.Region;
 import com.tendersapp.model.Status;
 import com.tendersapp.repository.AccountRepository;
-import com.tendersapp.repository.ProposalRepository;
-import com.tendersapp.repository.TenderRepository;
 import com.tendersapp.service.ProposalService;
 import com.tendersapp.service.TenderService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +71,6 @@ public class TenderController {
         return "index";
     }
 
-    // Відкриття сторінки створення тендера
     @GetMapping("/new")
     public String showCreateTenderForm(Model model, HttpSession session) {
         model.addAttribute("regions", Region.values());
@@ -89,7 +84,6 @@ public class TenderController {
         return "tenderCreator";
     }
 
-    // Створення тендера
     @PostMapping
     @Transactional
     public String createTender(
@@ -154,7 +148,6 @@ public class TenderController {
         return "redirect:/tenders/" + tenderId;
     }
 
-    // Відкриття сторінки створення пропозиції
     @GetMapping("/{tenderId}/proposals/new")
     public String showCreateProposalForm(
             @PathVariable("tenderId") int tenderId,
@@ -169,7 +162,7 @@ public class TenderController {
         proposalDTO.setTenderId(tenderId);
         model.addAttribute("proposalDTO", proposalDTO);
         model.addAttribute("accounts", accountRepository.findAll());
-        return "proposalCreator";  // шаблон src/main/resources/templates/proposals/new.html
+        return "proposalCreator";
     }
 
     @GetMapping("/{id}/winner/{proposalId}")

@@ -93,7 +93,6 @@ public class TenderService {
         tenderRepository.deleteById(tenderId);
     }
 
-    // Додатково: отримати всі тендери як DTO (для списку)
     @Transactional(readOnly = true)
     public List<TenderDTO> findAll() {
         return tenderRepository.findAll().stream()
@@ -109,7 +108,6 @@ public class TenderService {
     }
 
 
-    // Конвертація сутності в DTO
     private TenderDTO toDTO(Tender tender) {
         TenderDTO dto = new TenderDTO();
         dto.setId(tender.getId());

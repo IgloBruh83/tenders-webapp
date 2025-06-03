@@ -1,3 +1,5 @@
+/*
+
 package com.tendersapp.service;
 
 import jakarta.annotation.PostConstruct;
@@ -28,3 +30,6 @@ public class FileStorageService {
 
     }
 }
+
+
+*/

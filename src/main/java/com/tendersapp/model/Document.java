@@ -1,3 +1,5 @@
+/*
+
 package com.tendersapp.model;
 
 import jakarta.persistence.*;
@@ -29,3 +31,6 @@ public class Document {
     @JoinColumn(name = "proposal_id", nullable = true)
     private Tender proposal;
 }
+
+
+*/

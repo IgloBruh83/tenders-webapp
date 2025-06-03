@@ -21,22 +21,22 @@ public class PageController {
 
     @GetMapping("/")
     public String index() {
-        return "index"; // = templates/index.html
+        return "index";
     }
 
     @GetMapping("/about")
     public String aboutMe() {
-        return "about"; // = templates/about.html
+        return "about";
     }
 
     @GetMapping("/legal")
     public String legal() {
-        return "legal"; // = templates/legal.html
+        return "legal";
     }
 
     @GetMapping("/contacts")
     public String contacts() {
-        return "contacts"; // = templates/contacts.html
+        return "contacts";
     }
 
 }

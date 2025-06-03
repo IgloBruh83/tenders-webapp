@@ -1,3 +1,5 @@
+/*
+
 package com.tendersapp.controller;
 
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 
 
 @Controller
@@ -38,3 +41,7 @@ public class FileController {
     }
 
 }
+
+*/
+
+
