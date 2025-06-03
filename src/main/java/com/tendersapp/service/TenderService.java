@@ -128,7 +128,7 @@ public class TenderService {
             dto.setCreatorTel2(tender.getCreator().getTel2());
         }
         if (tender.getWinner() != null) {
-            dto.setWinnerId(tender.getWinner().getTaxId());
+            dto.setWinnerId(tender.getWinner().getId());
         }
         return dto;
     }
