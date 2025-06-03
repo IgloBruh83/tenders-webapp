@@ -63,9 +63,14 @@
                 </div>
             </div>
             <div>
-                <button id="profile-btn" style="background-color: rgb(216, 54, 54); margin-top: 190px;" th:attr="onclick=|window.location.href='@{/logout}'|">
+                <button id="profile-btn" style="margin-top: 190px;" th:attr="onclick=|window.location.href='@{/logout}'|">
                     <span>
                         Log Out
+                    </span>
+                </button>
+                <button id="profile-btn" style="background-color: rgb(216, 54, 54); margin-top: 190px;" th:attr="onclick=|window.location.href='@{/tenders/new}'|">
+                    <span>
+                        Створити тендер
                     </span>
                 </button>
             </div>    
