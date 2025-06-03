@@ -45,5 +45,5 @@ public class Tender {
 
     @ManyToOne
     @JoinColumn(name = "winner")
-    private Account winner;
+    private Proposal winner;
 }

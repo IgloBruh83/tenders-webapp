@@ -54,6 +54,10 @@ public class TenderController {
             model.addAttribute("isOwner", false);
         }
         model.addAttribute("tender", tenderDTO);
+        if (tenderDTO.getStatus() == Status.ENDED && tenderDTO.getWinnerId() != null) {
+            ProposalDTO proposal = proposalService.getProposalById(tenderDTO.getWinnerId());
+            model.addAttribute("winner", proposal);
+        }
 
         List<ProposalDTO> proposals = proposalService.findAllByTenderId(id);
         model.addAttribute("proposals", proposals);
@@ -164,6 +168,26 @@ public class TenderController {
         model.addAttribute("proposalDTO", proposalDTO);
         model.addAttribute("accounts", accountRepository.findAll());
         return "proposalCreator";  // шаблон src/main/resources/templates/proposals/new.html
+    }
+
+    @GetMapping("/{id}/winner/{proposalId}")
+    @Transactional
+    public String assignWinner(
+            @PathVariable("id") Integer tenderId,
+            @PathVariable("proposalId") Integer proposalId,
+            HttpSession session
+    ) {
+        Account account = (Account) session.getAttribute("user");
+        if (account == null) {
+            return "redirect:/login";
+        }
+        TenderDTO tenderDTO = tenderService.getTenderById(tenderId);
+        if (!account.getTaxId().equals(tenderDTO.getCreatorId())) {
+            return "redirect:/tenders/" + tenderId;
+        }
+
+        tenderService.setWinner(tenderId, proposalId);
+        return "redirect:/tenders/" + tenderId;
     }
 
     // Створення пропозиції

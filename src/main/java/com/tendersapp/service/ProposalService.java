@@ -40,6 +40,13 @@ public class ProposalService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public ProposalDTO getProposalById(Integer proposalId) {
+        Proposal proposal = proposalRepository.findById(proposalId)
+                .orElseThrow(() -> new EntityNotFoundException("Proposal не знайдено: " + proposalId));
+        return toDTO(proposal);
+    }
+
     @Transactional
     public void submitProposal(ProposalDTO dto) {
         Account creator = accountRepository.findById(dto.getCreatorId())

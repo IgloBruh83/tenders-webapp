@@ -92,15 +92,16 @@
                         Перемкнути статус
                     </span>
                 </button>
+                <br th:if="${!isOwner && tender.status != T(com.tendersapp.model.Status).OPEN}">
 
             </div>
         </div>
 
-        <h4 style="margin-left: 50px; margin-bottom: 15px; margin-top: 50px;" th:if="${isOwner}">
+        <h4 style="margin-left: 50px; margin-bottom: 15px; margin-top: 50px;" th:if="${isOwner && tender.status != T(com.tendersapp.model.Status).ENDED}">
         Тендерні пропозиції:
         </h4>
 
-        <div class="block-t" th:each="p : ${proposals}" th:if="${isOwner}">
+        <div class="block-t" th:each="p : ${proposals}" th:if="${isOwner && tender.status != T(com.tendersapp.model.Status).ENDED}">
         <div style="width: 800px;">
             <b style="color: grey" th:text="'PROP-ID-'+${p.id}">UA-1</b>
             <div class="acc-info" style="margin-top: 15px;">
@@ -128,12 +129,41 @@
         </div>
         <div style="background-color: black; width: 3px; margin: 0px 15px;"></div>
         <div style="width: 300px">
-            <button id="search-btn" style="margin-top: 10px; margin-left: 55px; width: 200px;" th:onclick="|window.location.href=''|">
+            <button id="search-btn" style="margin-top: 10px; margin-left: 55px; width: 200px;"
+                    th:onclick="|window.location.href='@{/tenders/{id}/winner/{propId}(id=${tender.id},propId=${p.id})}'|">
                 <span style="margin-right: 5px">
                 <b>Обрати переможцем</b>
                 </span>
             </button>
         </div>
+
+            <div class="block-t" th:if="${tender.status == T(com.tendersapp.model.Status).ENDED && winner != null}">
+                <div style="width: 800px;">
+                    <b style="color: grey" th:text="'PROP-ID-'+${winner.id}">UA-1</b>
+                    <div class="acc-info" style="margin-top: 15px;">
+                        <img th:src="@{/images/business-and-trade.png}" width="18px" height="18px">
+                        <span th:text="${winner.creatorName}">winner.creatorName</span>
+                    </div>
+                    <div class="acc-info">
+                        <img th:src="@{/images/business-and-trade.png}" width="18px" height="18px">
+                        <span th:text="'ІПН/ЄДРПОУ: ' + ${winner.creatorId}">ЄДРПОУ: winner.creatorID</span>
+                    </div>
+                    <div class="acc-info">
+                        <img th:src="@{/images/dry-clean.png}" width="18px" height="18px">
+                        <span th:text="'Бюджет: ' + ${winner.budget} + ' UAH'">winner.budget</span>
+                    </div>
+                    <div class="acc-info">
+                        <img th:src="@{/images/telephone.png}" width="18px" height="18px">
+                        <span th:text="${winner.creatorTel}">winner.creatorTel</span>
+                    </div>
+
+                    <br>
+                    <span style="font-size: 18px;"><b>Текст пропозиції:</b></span>
+                    <p th:text="${winner.description}">
+                        winner.description
+                    </p>
+                </div>
+                </div>
     </div>
 </div>
 </body>

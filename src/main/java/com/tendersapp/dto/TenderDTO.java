@@ -50,6 +50,6 @@ public class TenderDTO {
 
     private String creatorTel2;
 
-    private String winnerId;
+    private Integer winnerId;
 
 }

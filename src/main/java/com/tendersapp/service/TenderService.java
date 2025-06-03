@@ -2,9 +2,11 @@ package com.tendersapp.service;
 
 import com.tendersapp.dto.TenderDTO;
 import com.tendersapp.model.Account;
+import com.tendersapp.model.Proposal;
 import com.tendersapp.model.Status;
 import com.tendersapp.model.Tender;
 import com.tendersapp.repository.AccountRepository;
+import com.tendersapp.repository.ProposalRepository;
 import com.tendersapp.repository.TenderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,15 @@ public class TenderService {
 
     private final TenderRepository tenderRepository;
     private final AccountRepository accountRepository;
+    private final ProposalRepository proposalRepository;
 
     @Autowired
     public TenderService(TenderRepository tenderRepository,
-                         AccountRepository accountRepository) {
+                         AccountRepository accountRepository,
+                         ProposalRepository proposalRepository) {
         this.tenderRepository = tenderRepository;
         this.accountRepository = accountRepository;
+        this.proposalRepository = proposalRepository;
     }
 
     @Transactional(readOnly = true)
@@ -49,11 +54,25 @@ public class TenderService {
         tender.setCity(dto.getCity());
         tender.setAddress(dto.getAddress());
         tender.setCreator(creator);
-        if (dto.getWinnerId() != null) {
-            Account winner = accountRepository.findById(dto.getWinnerId())
-                    .orElseThrow(() -> new EntityNotFoundException("Account (winner) не знайдено: " + dto.getWinnerId()));
-            tender.setWinner(winner);
+        tender.setWinner(null);
+        tenderRepository.save(tender);
+    }
+
+    @Transactional
+    public void setWinner(Integer tenderId, Integer proposalId) {
+        Tender tender = tenderRepository.findById(tenderId)
+                .orElseThrow(() -> new EntityNotFoundException("Tender не знайдено: " + tenderId));
+
+        Proposal proposal = proposalRepository.findById(proposalId)
+                .orElseThrow(() -> new EntityNotFoundException("Proposal не знайдено: " + proposalId));
+
+        if (proposal.getTender().getId() != tenderId) {
+            throw new IllegalArgumentException("Proposal #" + proposalId +
+                    " не належить до Tender #" + tenderId);
         }
+
+        tender.setWinner(proposal);
+        tender.setStatus(Status.ENDED);
         tenderRepository.save(tender);
     }
 
