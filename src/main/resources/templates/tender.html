@@ -98,9 +98,8 @@
         </div>
 
         <h4 style="margin-left: 50px; margin-bottom: 15px; margin-top: 50px;" th:if="${isOwner && tender.status != T(com.tendersapp.model.Status).ENDED}">
-        Тендерні пропозиції:
+        Переможець тендеру:
         </h4>
-
         <div class="block-t" th:each="p : ${proposals}" th:if="${isOwner && tender.status != T(com.tendersapp.model.Status).ENDED}">
         <div style="width: 800px;">
             <b style="color: grey" th:text="'PROP-ID-'+${p.id}">UA-1</b>

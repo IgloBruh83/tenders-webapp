@@ -56,7 +56,9 @@ public class TenderController {
         model.addAttribute("tender", tenderDTO);
         if (tenderDTO.getStatus() == Status.ENDED && tenderDTO.getWinnerId() != null) {
             ProposalDTO proposal = proposalService.getProposalById(tenderDTO.getWinnerId());
-            model.addAttribute("winner", proposal);
+            if (proposal != null) {
+                model.addAttribute("winner", proposal);
+            }
         }
 
         List<ProposalDTO> proposals = proposalService.findAllByTenderId(id);
