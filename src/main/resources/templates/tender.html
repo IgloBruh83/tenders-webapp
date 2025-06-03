@@ -87,7 +87,7 @@
                 </button>
                 <button id="profile-btn" style="margin: 15px;"
                         th:attr="onclick=|location.href='@{/tenders/{id}/status(id=${tender.id})}'|"
-                        th:if="${isOwner}">
+                        th:if="${isOwner && T(com.tendersapp.model.Status).ENDED}">
                     <span style="margin-right: 5px">
                         Перемкнути статус
                     </span>
@@ -98,7 +98,7 @@
         </div>
 
         <h4 style="margin-left: 50px; margin-bottom: 15px; margin-top: 50px;" th:if="${isOwner && tender.status != T(com.tendersapp.model.Status).ENDED}">
-        Переможець тендеру:
+        Тендерні пропозиції:
         </h4>
         <div class="block-t" th:each="p : ${proposals}" th:if="${isOwner && tender.status != T(com.tendersapp.model.Status).ENDED}">
         <div style="width: 800px;">
@@ -135,6 +135,10 @@
                 </span>
             </button>
         </div>
+
+            <h4 style="margin-left: 50px; margin-bottom: 15px; margin-top: 50px;" th:if="${tender.status == T(com.tendersapp.model.Status).ENDED && winner != null}">
+                Тендерні пропозиції:
+            </h4>
 
             <div class="block-t" th:if="${tender.status == T(com.tendersapp.model.Status).ENDED && winner != null}">
                 <div style="width: 800px;">
