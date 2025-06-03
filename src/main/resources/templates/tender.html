@@ -87,7 +87,7 @@
                 </button>
                 <button id="profile-btn" style="margin: 15px;"
                         th:attr="onclick=|location.href='@{/tenders/{id}/status(id=${tender.id})}'|"
-                        th:if="${isOwner && T(com.tendersapp.model.Status).ENDED}">
+                        th:if="${isOwner && tender.status != T(com.tendersapp.model.Status).ENDED}">
                     <span style="margin-right: 5px">
                         Перемкнути статус
                     </span>
